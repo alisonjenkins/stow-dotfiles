@@ -220,7 +220,6 @@ packer.startup(function()
       "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
       "ray-x/lsp_signature.nvim",
-      "williamboman/nvim-lsp-installer",
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = get_plugin_config("null-ls"),
