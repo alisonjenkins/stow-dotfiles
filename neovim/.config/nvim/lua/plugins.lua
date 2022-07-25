@@ -299,6 +299,17 @@ packer.startup(function()
   -- Search index overlay {{{
   use({ "kevinhwang91/nvim-hlslens" })
   -- }}}
+  -- {{{ Automatic Sessions
+  use({
+    "rmagatti/auto-session",
+    config = get_plugin_config("auto-session"),
+  })
+  use({
+    "rmagatti/session-lens",
+    requires = { "rmagatti/auto-session", "nvim-telescope/telescope.nvim" },
+    config = get_plugin_config("session-lens"),
+  })
+  -- }}}
   -- Smooth scrolling{{{
   use({
     "karb94/neoscroll.nvim",
