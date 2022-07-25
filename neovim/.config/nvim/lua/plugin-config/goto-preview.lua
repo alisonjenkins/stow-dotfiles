@@ -1,3 +1,3 @@
 require("goto-preview").setup({
-    default_mappings = true
-  })
+  default_mappings = true,
+})
