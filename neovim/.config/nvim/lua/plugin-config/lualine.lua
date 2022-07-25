@@ -106,34 +106,28 @@ ins_left({
 --   cond = conditions.buffer_not_empty,
 -- }
 
--- ins_left({
---   "filename",
---   cond = conditions.buffer_not_empty,
---   color = { fg = colors.magenta, gui = "bold" },
--- })
+ins_left({
+  "filename",
+  color = { fg = colors.magenta, gui = "bold" },
+  cond = conditions.buffer_not_empty,
+  file_status = true,
+  path = 1,
+})
 
 ins_left({ "location" })
 
--- ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
+ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
--- ins_left({
---   "diagnostics",
---   sources = { "nvim_diagnostic" },
---   symbols = { error = " ", warn = " ", info = " " },
---   diagnostics_color = {
---     color_error = { fg = colors.red },
---     color_warn = { fg = colors.yellow },
---     color_info = { fg = colors.cyan },
---   },
--- })
-
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
--- ins_left {
---   function()
---     return "%="
---   end,
--- }
+ins_left({
+  "diagnostics",
+  sources = { "nvim_lsp" },
+  symbols = { error = " ", warn = " ", info = " " },
+  diagnostics_color = {
+    color_error = { fg = colors.red },
+    color_warn = { fg = colors.yellow },
+    color_info = { fg = colors.cyan },
+  },
+})
 
 ins_left({
   gps.get_location,
@@ -141,7 +135,7 @@ ins_left({
 })
 
 ins_right({
-  -- Lsp server name .
+  -- Lsp server name
   function()
     local msg = "No Active Lsp"
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -161,7 +155,6 @@ ins_right({
   color = { fg = "#ffffff", gui = "bold" },
 })
 
--- Add components to right sections
 ins_right({
   "o:encoding", -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
@@ -184,7 +177,6 @@ ins_right({
 
 ins_right({
   "diff",
-  -- Is it me or the symbol for modified us really weird
   symbols = { added = "+ ", modified = "~ ", removed = "- " },
   diff_color = {
     added = { fg = colors.green },
@@ -196,7 +188,6 @@ ins_right({
 
 ins_right({
   function()
-    -- auto change color according to neovims mode
     vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
     return "▊"
   end,
