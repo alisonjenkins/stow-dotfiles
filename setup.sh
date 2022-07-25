@@ -6,6 +6,7 @@ if [ -f /etc/arch-release ]; then
   PACKAGES=(
     alacritty
     asdf-vm
+    aws-session-manager-plugin
     aws-vault
     azure-cli
     discord
