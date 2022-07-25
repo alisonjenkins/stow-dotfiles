@@ -96,6 +96,13 @@ packer.startup(function()
   -- }}}
   -- File manager{{{
   use({ "justinmk/vim-dirvish" }) --}}}
+  -- {{{ Fold previews
+  use({
+    "anuvyklack/fold-preview.nvim",
+    requires = "anuvyklack/keymap-amend.nvim",
+    config = get_plugin_config("fold-preview"),
+  })
+  -- }}}
   -- Fuzzy finding{{{
   use({
     "nvim-telescope/telescope.nvim",
@@ -402,7 +409,8 @@ packer.startup(function()
   use({ "tpope/vim-unimpaired" }) --}}}
   -- {{{ Trailing Whitespace
   use({
-    "zakharykaplan/nvim-retrail", config = get_plugin_config("retrail")
+    "zakharykaplan/nvim-retrail",
+    config = get_plugin_config("retrail"),
   })
   -- }}}
   -- Zen mode{{{
