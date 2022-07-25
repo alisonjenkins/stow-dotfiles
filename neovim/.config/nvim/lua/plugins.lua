@@ -221,6 +221,8 @@ packer.startup(function()
       "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
       "ray-x/lsp_signature.nvim",
+      { "rmagatti/goto-preview", config = get_plugin_config("goto-preview") },
+      { "glepnir/lspsaga.nvim", config = get_plugin_config("lspsaga") },
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = get_plugin_config("null-ls"),
