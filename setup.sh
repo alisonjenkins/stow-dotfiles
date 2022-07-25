@@ -7,6 +7,7 @@ if [ -f /etc/arch-release ]; then
     alacritty
     asdf-vm
     aws-vault
+    azure-cli
     discord
     drawio
     exa
@@ -14,6 +15,7 @@ if [ -f /etc/arch-release ]; then
     freeplane
     git
     haveged
+    jq
     logseq-desktop
     neovim
     nerd-fonts-hack
@@ -22,6 +24,7 @@ if [ -f /etc/arch-release ]; then
     python-pip
     ripgrep
     rustup
+    seahorse
     slack-desktop
     steam
     tmux
@@ -63,6 +66,9 @@ if [ -f /etc/arch-release ]; then
     kubectl
     kubectx
     terraform
+    terraform-docs
+    tflint
+    tfsec
   )
 
   # Ensure all listed asdf plugins are installed
