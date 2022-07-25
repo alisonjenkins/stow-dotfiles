@@ -221,6 +221,7 @@ packer.startup(function()
       "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
       "ray-x/lsp_signature.nvim",
+      { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", config = get_plugin_config("lsp_lines") },
       { "rmagatti/goto-preview", config = get_plugin_config("goto-preview") },
       { "glepnir/lspsaga.nvim", config = get_plugin_config("lspsaga") },
       {
