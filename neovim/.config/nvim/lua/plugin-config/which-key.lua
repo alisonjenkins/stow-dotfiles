@@ -1,7 +1,7 @@
 -- vim: set foldmethod=marker foldlevel=0:
-local wk = require "which-key"
+local wk = require("which-key")
 
-wk.setup { --{{{
+wk.setup({ --{{{
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
     registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -42,10 +42,10 @@ wk.setup { --{{{
   },
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
   show_help = true, -- show help message on the command line when the popup is visible
-} --}}}
+}) --}}}
 
 -- Format on save and quit {{{
-vim.cmd [[cabbrev wq execute "Format sync" <bar> wq]]
+vim.cmd([[cabbrev wq execute "Format sync" <bar> wq]])
 -- }}}
 
 -- Code navigation shortcuts{{{
@@ -53,11 +53,10 @@ vim.api.nvim_set_keymap("n", "<c-]>", ":lua vim.lsp.buf.definition()<CR>", { sil
 vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", { silent = true })
-vim.api.nvim_set_keymap("n", "gd", '<cmd>lua require("telescope.builtin").lsp_definitions()<CR>', { silent = true }) --}}}
+-- }}}
 
 -- better window movement with Tmux integration {{{
 vim.api.nvim_set_keymap("n", "<C-h>", "<cmd>lua require('tmux').move_left()<cr>", { silent = true })
@@ -91,6 +90,12 @@ vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
 -- Set leader{{{
 vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
 vim.g.mapleader = " " --}}}
+
+-- {{{ Nvim Keymaps
+vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true })
+vim.keymap.set("n", "gd", "<cmd>Lspsaga preview_definition<CR>", { silent = true })
+-- }}}
 
 -- Setup leader based mappings with which-key so they are documented and
 -- a cheatsheet is presented when leader is activated
