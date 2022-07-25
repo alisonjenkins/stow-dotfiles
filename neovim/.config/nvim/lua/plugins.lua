@@ -190,12 +190,6 @@ packer.startup(function()
   }) --}}}
   -- Highlight of use{{{
   use({ "RRethy/vim-illuminate", event = "CursorHold" }) --}}}
-  -- Hop {{{
-  use({
-    "phaazon/hop.nvim",
-    config = get_plugin_config("hop"),
-  })
-  -- }}}
   -- Indentation guides {{{
   use({
     "lukas-reineke/indent-blankline.nvim",
