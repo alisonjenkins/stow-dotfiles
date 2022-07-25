@@ -11,4 +11,8 @@ require("mason-lspconfig").setup_handlers({
   ["gopls"] = function()
     require("go").setup({})
   end,
+  ["sumneko_lua"] = function()
+    local luadev = require("lua-dev").setup({})
+    require("lspconfig").sumneko_lua.setup(luadev)
+  end,
 })
