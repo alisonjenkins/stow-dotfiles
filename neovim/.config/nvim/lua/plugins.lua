@@ -283,6 +283,11 @@ packer.startup(function()
     "ThePrimeagen/harpoon",
     requires = { "nvim-lua/plenary.nvim" },
   }) --}}}
+  -- {{{ Vim Rest Console
+  use({
+    "diepm/vim-rest-console",
+  })
+  -- }}}
   -- {{{ Per split buffer names
   use({ "b0o/incline.nvim", config = get_plugin_config("incline") })
   -- }}}
