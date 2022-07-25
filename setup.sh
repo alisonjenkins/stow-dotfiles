@@ -27,6 +27,7 @@ if [ -f /etc/arch-release ]; then
     python-pip
     ripgrep
     rustup
+    sccache
     seahorse
     slack-desktop
     steam
