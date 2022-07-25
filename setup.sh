@@ -65,10 +65,14 @@ if [ -f /etc/arch-release ]; then
   ASDF_PLUGINS_TO_INSTALL=(
     awscli
     direnv
+    flux2
     github-cli
+    helm
     just
     kubectl
     kubectx
+    nodejs
+    sops
     terraform
     terraform-docs
     tflint
