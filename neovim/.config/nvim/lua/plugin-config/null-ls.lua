@@ -1,5 +1,6 @@
 local null_ls = require("null-ls")
 local lSsources = {
+  null_ls.builtins.code_actions.gitsigns,
   null_ls.builtins.formatting.terraform_fmt,
   null_ls.builtins.formatting.prettierd.with({
     filetypes = {
