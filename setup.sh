@@ -17,6 +17,7 @@ if [ -f /etc/arch-release ]; then
     git
     haveged
     jq
+    kubecm-git
     logseq-desktop
     neovim
     nerd-fonts-hack
