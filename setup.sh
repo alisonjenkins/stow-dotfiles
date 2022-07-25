@@ -19,6 +19,7 @@ if [ -f /etc/arch-release ]; then
     jq
     kubecm-git
     logseq-desktop
+    mold
     neovim
     nerd-fonts-hack
     nnn
