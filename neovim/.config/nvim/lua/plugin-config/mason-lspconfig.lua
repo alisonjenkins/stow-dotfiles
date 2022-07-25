@@ -8,4 +8,7 @@ require("mason-lspconfig").setup_handlers({
   ["rust_analyzer"] = function()
     require("rust-tools").setup({})
   end,
+  ["gopls"] = function()
+    require("go").setup({})
+  end,
 })

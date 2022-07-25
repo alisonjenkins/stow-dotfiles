@@ -221,6 +221,16 @@ packer.startup(function()
       "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
       "ray-x/lsp_signature.nvim",
+      {
+        "ray-x/go.nvim",
+        config = get_plugin_config("go"),
+        requires = {
+          "mfussenegger/nvim-dap",
+          "rcarriga/nvim-dap-ui",
+          "theHamsta/nvim-dap-virtual-text",
+          "ray-x/guihua.lua",
+        },
+      },
       { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", config = get_plugin_config("lsp_lines") },
       { "rmagatti/goto-preview", config = get_plugin_config("goto-preview") },
       { "glepnir/lspsaga.nvim", config = get_plugin_config("lspsaga") },
@@ -240,15 +250,6 @@ packer.startup(function()
     wants = { "nvim-web-devicons", "nvim-lspconfig" },
     requires = { "kyazdani42/nvim-web-devicons" },
     config = get_plugin_config("trouble"),
-  })
-  use({
-    "ray-x/go.nvim",
-    config = get_plugin_config("go"),
-    requires = {
-      "mfussenegger/nvim-dap",
-      "rcarriga/nvim-dap-ui",
-      "theHamsta/nvim-dap-virtual-text",
-    },
   })
   use({
     "j-hui/fidget.nvim",
