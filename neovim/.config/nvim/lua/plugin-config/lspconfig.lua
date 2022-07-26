@@ -56,6 +56,10 @@ lsp_servers["dockerls"] = {}
 lsp_servers["gopls"] = {}
 -- }}}
 
+-- {{{ Groovy
+lsp_servers["groovyls"] = {}
+-- }}}
+
 -- {{{ HTML
 lsp_servers["html"] = {}
 -- }}}
