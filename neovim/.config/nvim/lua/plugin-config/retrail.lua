@@ -1,1 +1,8 @@
-require("retrail").setup()
+require("retrail").setup({
+  filetype = {
+    exclude = {
+      "alpha",
+      "dirvish",
+    },
+  },
+})
