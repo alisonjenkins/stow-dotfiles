@@ -413,10 +413,10 @@ packer.startup(function()
   -- Unimpaired shortcuts{{{
   use({ "tpope/vim-unimpaired" }) --}}}
   -- {{{ Trailing Whitespace
-  use({
-    "zakharykaplan/nvim-retrail",
-    config = get_plugin_config("retrail"),
-  })
+  -- use({
+  --   "zakharykaplan/nvim-retrail",
+  --   config = get_plugin_config("retrail"),
+  -- })
   -- }}}
   -- Zen mode{{{
   use({
