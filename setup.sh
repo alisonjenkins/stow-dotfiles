@@ -10,7 +10,7 @@ if [ -f /etc/arch-release ]; then
     aws-vault
     azure-cli
     discord
-    drawio
+    drawio-desktop-bin
     exa
     fd
     freeplane
