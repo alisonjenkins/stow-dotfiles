@@ -13,6 +13,7 @@ export EDITOR='nvim'
 
 # Set the Go Path
 export GOPATH="$HOME/go"
+export GOBIN="$HOME/go/bin"
 
 # Make shell history ignore duplicated commands and ignore any command
 # starting with a space.
