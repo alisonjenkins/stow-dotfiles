@@ -69,9 +69,11 @@ if [ -f /etc/arch-release ]; then
     flux2
     github-cli
     helm
+    java
     just
     kubectl
     kubectx
+    maven
     nodejs
     sops
     terraform
@@ -94,7 +96,9 @@ if [ -f /etc/arch-release ]; then
   declare -A ASDF_TOOL_VERSIONS
 
   ASDF_TOOL_VERSIONS=(
+    [java]="corretto-11.0.16.8.1"
     [just]="0.9.4"
+    [maven]="3.8.6"
   )
 
   # Ensure the latest versions of software are installed via asdf
