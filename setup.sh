@@ -112,8 +112,50 @@ if [ -f /etc/arch-release ]; then
     asdf global "$plugin" "$INSTALL_VERSION"
   done
 
-  # ensure codecommit grc is installed
-  pip install git-remote-codecommit
+  # pip packages
+  declare -a PIP_PACKAGES_INSTALLED
+  declare -a PIP_PACKAGES_TO_INSTALL
+  PIP_PACKAGES_INSTALLED=($(pip list))
+
+  PIP_PACKAGES_TO_INSTALL=(
+    git-remote-codecommit
+    neovim
+  )
+
+  for PACKAGE in "${PIP_PACKAGES_TO_INSTALL[@]}"; do
+    if ! echo "${PIP_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &> /dev/null; then
+      pip install "$PACKAGE"
+    fi
+  done
+
+  # gem packages
+  declare -a GEM_PACKAGES_INSTALLED
+  declare -a GEM_PACKAGES_TO_INSTALL
+  GEM_PACKAGES_INSTALLED=($(gem list))
+
+  GEM_PACKAGES_TO_INSTALL=(
+    neovim
+  )
+
+  for PACKAGE in "${GEM_PACKAGES_TO_INSTALL[@]}"; do
+    if ! echo "${GEM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &> /dev/null; then
+      gem install "$PACKAGE"
+    fi
+  done
+
+  # npm packages
+  declare -a NPM_PACKAGES_INSTALLED
+  declare -a NPM_PACKAGES_TO_INSTALL
+  NPM_PACKAGES_INSTALLED=($(npm list))
+  NPM_PACKAGES_TO_INSTALL=(
+    neovim
+  )
+
+  for PACKAGE in "${NPM_PACKAGES_TO_INSTALL[@]}"; do
+    if ! echo "${NPM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &> /dev/null; then
+      npm install -g "$PACKAGE"
+    fi
+  done
 fi
 
 # Ensure tmux plugin manager is installed
