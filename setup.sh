@@ -31,6 +31,7 @@ if [ -f /etc/arch-release ]; then
     seahorse
     slack-desktop
     steam
+    tig
     tmux
     zoxide
     zsh
