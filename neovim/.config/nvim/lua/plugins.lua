@@ -171,10 +171,10 @@ packer.startup(function()
     "f-person/git-blame.nvim",
     config = get_plugin_config("git-blame"),
   })
-  use({
-    "lewis6991/gitsigns.nvim",
-    config = get_plugin_config("gitsigns"),
-  })
+  -- use({
+  --   "lewis6991/gitsigns.nvim",
+  --   config = get_plugin_config("gitsigns"),
+  -- })
   use({ "lambdalisue/gina.vim" })
   use({
     "pwntester/octo.nvim",
