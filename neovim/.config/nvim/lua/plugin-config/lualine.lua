@@ -55,6 +55,8 @@ local conditions = {
 -- Config
 local config = {
   options = {
+    globalstatus = true,
+    icons_enabled = true,
     component_separators = "",
     section_separators = "",
     theme = {
@@ -100,6 +102,23 @@ ins_left({
   padding = { right = 1 },
 })
 
+ins_left({
+  "branch",
+  icon = "",
+  color = { fg = colors.violet, gui = "bold" },
+})
+
+ins_left({
+  "diff",
+  symbols = { added = "+ ", modified = "~ ", removed = "- " },
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
+  },
+  cond = conditions.hide_in_width,
+})
+
 -- ins_left {
 --   -- filesize component
 --   "filesize",
@@ -108,7 +127,7 @@ ins_left({
 
 ins_left({
   "filename",
-  color = { fg = colors.magenta, gui = "bold" },
+  -- color = { fg = colors.green, gui = "bold" },
   cond = conditions.buffer_not_empty,
   file_status = true,
   path = 1,
@@ -134,7 +153,7 @@ ins_left({
   cond = gps.is_available,
 })
 
-ins_right({
+ins_left({
   -- Lsp server name
   function()
     local msg = "No Active Lsp"
@@ -155,36 +174,19 @@ ins_right({
   color = { fg = "#ffffff", gui = "bold" },
 })
 
-ins_right({
-  "o:encoding", -- option component same as &encoding in viml
-  fmt = string.upper, -- I'm not sure why it's upper case either ;)
-  cond = conditions.hide_in_width,
-  color = { fg = colors.green, gui = "bold" },
-})
+-- ins_right({
+--   "o:encoding", -- option component same as &encoding in viml
+--   fmt = string.upper, -- I'm not sure why it's upper case either ;)
+--   cond = conditions.hide_in_width,
+--   color = { fg = colors.green, gui = "bold" },
+-- })
 
-ins_right({
-  "fileformat",
-  fmt = string.upper,
-  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-  color = { fg = colors.green, gui = "bold" },
-})
-
-ins_right({
-  "branch",
-  icon = "",
-  color = { fg = colors.violet, gui = "bold" },
-})
-
-ins_right({
-  "diff",
-  symbols = { added = "+ ", modified = "~ ", removed = "- " },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.hide_in_width,
-})
+-- ins_right({
+--   "fileformat",
+--   fmt = string.upper,
+--   icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+--   color = { fg = colors.green, gui = "bold" },
+-- })
 
 ins_right({
   function()
