@@ -1,6 +1,6 @@
-local cmp = require "cmp"
-local compare = require "cmp.config.compare"
-local lspkind = require "lspkind"
+local cmp = require("cmp")
+local compare = require("cmp.config.compare")
+local lspkind = require("lspkind")
 
 local source_mapping = {
   nvim_lsp = "[LSP]",
@@ -10,7 +10,7 @@ local source_mapping = {
   path = "[PATH]",
 }
 
-cmp.setup {
+cmp.setup({
   completion = {
     border = "rounded",
     winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
@@ -53,64 +53,63 @@ cmp.setup {
     ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-e>"] = cmp.mapping {
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete({}), { "i", "c" }),
+    ["<C-e>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
-    },
-    ["<C-y>"] = cmp.mapping.confirm {
+    }),
+    ["<C-y>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
-    },
+    }),
   },
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
     end,
   },
+
   sources = {
-    { name = "copilot" },
-    { name = "cmp_tabnine" },
-    { name = "nvim_lsp" },
-    { name = "cmp_pandoc" },
-    { name = "cmdline" },
-    { name = "crates" },
-    { name = "nvim_lua" },
-    { name = "luasnip" },
-    { name = "orgmode" },
-    { name = "buffer" },
-    { name = "spell" },
+    { name = "cmp_tabnine", priority = 8 },
+    { name = "copilot", priority = 8 },
+    { name = "nvim_lsp", priority = 8 },
+    { name = "nvim_lsp_signature_help", priority = 8 },
+    -- { name = "cmp_pandoc",  },
+    -- { name = "cmdline" },
+    -- { name = "crates" },
+    { name = "buffer", priority = 7 },
+    { name = "luasnip", priority = 7 },
+    { name = "nvim_lua", priority = 5 },
+    -- { name = "orgmode" },
+    { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
     { name = "path", keyword_length = 5 },
-    { name = "fuzzy_path" },
-    { name = "fuzzy_buffer" },
+    { name = "fuzzy_path", priority = 4 },
+    { name = "fuzzy_buffer", priority = 4 },
     {
       name = "tmux",
       option = {
         all_panes = true,
         label = "[tmux]",
       },
+      priority = 4,
     },
-    { name = "nvim_lsp_signature_help" },
   },
   sorting = {
-    priority_weight = 2,
+    priority_weight = 1,
     comparators = {
+      compare.locality,
+      compare.recently_used,
+      compare.score,
+      compare.offset,
+      compare.order,
       require("copilot_cmp.comparators").prioritize,
       require("copilot_cmp.comparators").score,
-      require "cmp_tabnine.compare",
-      require "cmp_fuzzy_path.compare",
-      require "cmp_fuzzy_buffer.compare",
-      compare.offset,
-      compare.exact,
-      compare.score,
-      compare.recently_used,
-      compare.kind,
-      compare.sort_text,
-      compare.length,
-      compare.order,
+      require("cmp_tabnine.compare"),
+      require("cmp_fuzzy_path.compare"),
+      require("cmp_fuzzy_buffer.compare"),
     },
   },
-}
+})
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline("/", {
@@ -122,10 +121,10 @@ cmp.setup.cmdline("/", {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
-  sources = cmp.config.sources {
+  sources = cmp.config.sources({
     { name = "fuzzy_path" },
     { name = "cmdline" },
-  },
+  }),
 })
 
 require("cmp_pandoc").setup()
