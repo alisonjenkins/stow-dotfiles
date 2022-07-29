@@ -33,6 +33,7 @@ if [ -f /etc/arch-release ]; then
     steam
     tig
     tmux
+    xclip
     zoxide
     zsh
   )
