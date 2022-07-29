@@ -15,6 +15,11 @@ export EDITOR='nvim'
 export GOPATH="$HOME/go"
 export GOBIN="$HOME/go/bin"
 
+# McFly options
+export MCFLY_FUZZY=2
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_RESULTS=50
+
 # Make shell history ignore duplicated commands and ignore any command
 # starting with a space.
 export HISTCONTROL=ignoredups:ignorespace
