@@ -53,5 +53,8 @@ zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/
 zinit ice lucid wait
 zinit snippet OMZP::fzf
 
+zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"'
+zinit light cantino/mcfly
+
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
