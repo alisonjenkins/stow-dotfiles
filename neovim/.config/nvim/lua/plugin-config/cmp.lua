@@ -70,7 +70,7 @@ cmp.setup({
   },
 
   sources = {
-    { name = "copilot", priority = 8 },
+    -- { name = "copilot", priority = 8 },
     { name = "cmp_tabnine", priority = 8 },
     { name = "nvim_lsp", priority = 8 },
     { name = "nvim_lsp_signature_help", priority = 8 },
@@ -97,8 +97,8 @@ cmp.setup({
   sorting = {
     priority_weight = 1,
     comparators = {
-      require("copilot_cmp.comparators").prioritize,
-      require("copilot_cmp.comparators").score,
+      -- require("copilot_cmp.comparators").prioritize,
+      -- require("copilot_cmp.comparators").score,
       require("cmp_tabnine.compare"),
       require("cmp_fuzzy_path.compare"),
       require("cmp_fuzzy_buffer.compare"),
