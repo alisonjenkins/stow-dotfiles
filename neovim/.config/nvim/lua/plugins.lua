@@ -69,7 +69,7 @@ packer.startup(function()
       "f3fora/cmp-spell",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
-      { "zbirenbaum/copilot-cmp", module = "copilot_cmp" },
+      -- { "zbirenbaum/copilot-cmp", module = "copilot_cmp" },
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
@@ -132,15 +132,15 @@ packer.startup(function()
   })
   --}}}
   -- Github Copilot {{{
-  use({
-    "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup()
-      end, 100)
-    end,
-  })
+  -- use({
+  --   "zbirenbaum/copilot.lua",
+  --   event = { "VimEnter" },
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require("copilot").setup()
+  --     end, 100)
+  --   end,
+  -- })
   -- }}}
   -- Git integration{{{
   use({
