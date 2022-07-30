@@ -5,6 +5,7 @@ set -euo pipefail
 if [ -f /etc/arch-release ]; then
   PACKAGES=(
     alacritty
+    aria2
     asdf-vm
     aws-session-manager-plugin
     aws-vault
