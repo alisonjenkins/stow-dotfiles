@@ -25,6 +25,7 @@ if [ -f /etc/arch-release ]; then
     nerd-fonts-hack
     nnn
     perimeter81
+    pwgen
     python-pip
     ripgrep
     rustup
@@ -73,10 +74,12 @@ if [ -f /etc/arch-release ]; then
     helm
     java
     just
+    k9s
     kubectl
     kubectx
     maven
     nodejs
+    packer
     sops
     terraform
     terraform-docs
