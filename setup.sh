@@ -177,3 +177,4 @@ stow -t $HOME systemd/
 stow -t $HOME tig/
 stow -t $HOME tmux
 stow -t $HOME zsh/
+stow -t "$HOME" wezterm/
