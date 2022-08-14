@@ -37,6 +37,7 @@ if [ -f /etc/arch-release ]; then
     slack-desktop
     steam
     tig
+    tilt-bin
     tmux
     xclip
     zoxide
