@@ -160,8 +160,10 @@ wk.register({
   }, --}}}
 
   -- Telescope mappings{{{
-  b = { "<cmd>Telescope buffers<cr>", "Buffers (Telescope)" }, --}}}
-  f = { "<cmd>Telescope find_files<cr>", "Find files (Telescope)" }, --}}}
+  b = { "<cmd>Telescope buffers<cr>", "Buffers (Telescope)" },
+  f = { "<cmd>Telescope find_files<cr>", "Find files (Telescope)" },
+  F = { "<cmd>Telescope find_files hidden=true<cr>", "Find files including hidden files (Telescope)" },
+  -- }}}
 
   -- s is for search powered by Telescope{{{
   s = {
