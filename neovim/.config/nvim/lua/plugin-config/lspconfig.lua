@@ -110,6 +110,6 @@ require("toggle_lsp_diagnostics").init({ underline = false, virtual_text = { spa
 local lspconfig = require("lspconfig")
 
 for lsp_name, lsp_settings in pairs(lsp_servers) do
-  lspconfig[lsp_name].setup(lsp_settings)
+  lspconfig[lsp_name].setup(default(lsp_settings))
 end
 --}}}
