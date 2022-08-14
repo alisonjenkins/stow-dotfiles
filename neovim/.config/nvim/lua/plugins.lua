@@ -31,28 +31,28 @@ packer.init({ --{{{
 }) --}}}
 
 packer.startup(function()
-  -- Packer self update{{{
+  -- Packer self update {{{
   use({ "wbthomason/packer.nvim" }) --}}}
-  -- Lua caching{{{
+  -- Lua caching {{{
   use({ "lewis6991/impatient.nvim" }) --}}}
-  -- Add restoration of last location in files{{{
+  -- Add restoration of last location in files {{{
   use({
     "ethanholz/nvim-lastplace",
     config = get_plugin_config("lastplace"),
   }) --}}}
-  -- Alignment{{{
+  -- Alignment {{{
   -- TODO: Configure the mappings for this plugin.
   use({
     "junegunn/vim-easy-align",
   }) --}}}
-  -- Colour schemes{{{
+  -- Colour schemes {{{
   use({ "folke/tokyonight.nvim", config = get_plugin_config("tokyonight") })
   use({ "rebelot/kanagawa.nvim", config = get_plugin_config("kanagawa") })
   use({ "sainnhe/everforest", config = get_plugin_config("everforest") })
   --}}}
-  -- Commenting{{{
+  -- Commenting {{{
   use({ "numToStr/Comment.nvim", config = get_plugin_config("comment") }) --}}}
-  -- Completion{{{
+  -- Completion {{{
   use({
     "hrsh7th/nvim-cmp",
     config = get_plugin_config("cmp"),
@@ -82,7 +82,7 @@ packer.startup(function()
       { "tzachar/cmp-fuzzy-buffer", requires = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
     },
   }) -- }}}
-  -- Colorizer (Colour previews for things that define colours in code){{{
+  -- Colorizer (Colour previews for things that define colours in code) {{{
   use({
     "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
@@ -91,12 +91,12 @@ packer.startup(function()
   -- Detect indent {{{
   use({ "tpope/vim-sleuth" })
   -- }}}
-  -- {{{ Faster filetypes plugin
+  -- Faster filetypes plugin {{{
   use({ "nathom/filetype.nvim" })
   -- }}}
-  -- File manager{{{
+  -- File manager {{{
   use({ "justinmk/vim-dirvish" }) --}}}
-  -- {{{ Fold previews
+  -- Fold previews {{{
   use({
     "anuvyklack/fold-preview.nvim",
     requires = "anuvyklack/keymap-amend.nvim",
@@ -106,7 +106,7 @@ packer.startup(function()
   -- Folding improvements {{{
   use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async", config = get_plugin_config("nvim-ufo") })
   -- }}}
-  -- Fuzzy finding{{{
+  -- Fuzzy finding {{{
   use({
     "nvim-telescope/telescope.nvim",
     config = get_plugin_config("telescope"),
@@ -145,7 +145,7 @@ packer.startup(function()
   --   end,
   -- })
   -- }}}
-  -- Git integration{{{
+  -- Git integration {{{
   use({
     "tpope/vim-fugitive",
     requires = {
@@ -189,16 +189,16 @@ packer.startup(function()
     config = get_plugin_config("octo"),
   })
   --}}}
-  -- Grammar checking{{{
+  -- Grammar checking {{{
   use({ "rhysd/vim-grammarous", cmd = "GrammarousCheck" })
   --}}}
-  -- GPS for statusline (to tell where you are in large structures){{{
+  -- GPS for statusline (to tell where you are in large structures) {{{
   use({
     "SmiteshP/nvim-gps",
     config = get_plugin_config("gps"),
     requires = "nvim-treesitter/nvim-treesitter",
   }) --}}}
-  -- Highlight of use{{{
+  -- Highlight of use {{{
   use({ "RRethy/vim-illuminate", event = "CursorHold" }) --}}}
   -- Indentation guides {{{
   use({
@@ -206,7 +206,7 @@ packer.startup(function()
     config = get_plugin_config("indent-blankline"),
   })
   -- }}}
-  -- Key mapping{{{
+  -- Key mapping {{{
   use({
     "folke/which-key.nvim",
     requires = {
@@ -215,7 +215,7 @@ packer.startup(function()
     event = "VimEnter",
     config = get_plugin_config("which-key"),
   }) --}}}
-  -- Language servers + LSP tools{{{
+  -- Language servers + LSP tools {{{
   use({
     "neovim/nvim-lspconfig",
     requires = {
@@ -275,41 +275,41 @@ packer.startup(function()
     config = get_plugin_config("mini"),
   })
   -- }}}
-  -- {{{ Neorg (Neovim Org mode)
+  -- Neorg (Neovim Org mode) {{{
   use({
     "nvim-neorg/neorg",
     config = get_plugin_config("neorg"),
     requires = "nvim-lua/plenary.nvim",
   })
   -- }}}
-  -- nvim-dev-webicons{{{
+  -- nvim-dev-webicons {{{
   use({
     "kyazdani42/nvim-web-devicons",
     config = get_plugin_config("nvim-web-devicons"),
   }) --}}}
-  -- Per project marks{{{
+  -- Per project marks {{{
   use({
     "ThePrimeagen/harpoon",
     requires = { "nvim-lua/plenary.nvim" },
   }) --}}}
-  -- {{{ Vim Rest Console
+  -- Vim Rest Console {{{
   use({
     "diepm/vim-rest-console",
   })
   -- }}}
-  -- {{{ Per split buffer names
+  -- Per split buffer names {{{
   use({ "b0o/incline.nvim", config = get_plugin_config("incline") })
   -- }}}
   -- Search index overlay {{{
   use({ "kevinhwang91/nvim-hlslens" })
   -- }}}
-  -- Smooth scrolling{{{
+  -- Smooth scrolling {{{
   use({
     "karb94/neoscroll.nvim",
     keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-e>", "zt", "zz", "zb" },
     config = get_plugin_config("neoscroll"),
   }) --}}}
-  -- Statusline{{{
+  -- Statusline {{{
   use({
     "nvim-lualine/lualine.nvim",
     requires = {
@@ -324,7 +324,7 @@ packer.startup(function()
     requires = { "kyazdani42/nvim-web-devicons" },
   })
   -- }}}
-  -- {{{ Terraform Plugins
+  -- Terraform Plugins {{{
   use({
     "hashivim/vim-terraform",
     config = get_plugin_config("terraform"),
@@ -335,13 +335,13 @@ packer.startup(function()
     config = get_plugin_config("terraform-completion"),
   })
   -- }}}
-  -- Todo comments{{{
+  -- Todo comments {{{
   use({
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = get_plugin_config("todo-comments"),
   }) --}}}
-  -- Treesitter + Addons{{{
+  -- Treesitter + Addons {{{
   use({
     "nvim-treesitter/nvim-treesitter",
     config = get_plugin_config("treesitter"),
@@ -359,7 +359,7 @@ packer.startup(function()
       "nvim-ts-rainbow",
     },
   }) --}}}
-  -- Twilight Highlighting (Zen mode focusing){{{
+  -- Twilight Highlighting (Zen mode focusing) {{{
   use({
     "folke/twilight.nvim",
     config = get_plugin_config("twilight"),
@@ -375,12 +375,13 @@ packer.startup(function()
     config = get_plugin_config("pandoc"),
   })
   -- }}}
-  -- {{{ Registers
+  -- Registers {{{
   use({ "tversteeg/registers.nvim" })
   -- }}}
-  -- Repeat{{{
-  use({ "tpope/vim-repeat" }) --}}}
-  -- Rust{{{
+  -- Repeat {{{
+  use({ "tpope/vim-repeat" })
+  --}}}
+  -- Rust {{{
   use({
     "simrat39/rust-tools.nvim",
     config = get_plugin_config("rust-tools"),
@@ -392,7 +393,7 @@ packer.startup(function()
     config = get_plugin_config("crates"),
   })
   --}}}
-  -- Startup Dashboard{{{
+  -- Startup Dashboard {{{
   use({
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
@@ -401,7 +402,7 @@ packer.startup(function()
       require("alpha").setup(require("alpha.themes.startify").opts)
     end,
   }) --}}}
-  -- Speeddating (Allows incrementing and decrementing of dates){{{
+  -- Speeddating (Allows incrementing and decrementing of dates) {{{
   use({
     "tpope/vim-speeddating",
   }) --}}}
@@ -413,15 +414,15 @@ packer.startup(function()
   -- Syntax files {{{
   use({ "sheerun/vim-polyglot" })
   -- }}}
-  -- Unimpaired shortcuts{{{
+  -- Unimpaired shortcuts {{{
   use({ "tpope/vim-unimpaired" }) --}}}
-  -- {{{ Trailing Whitespace
+  -- Trailing Whitespace {{{
   -- use({
   --   "zakharykaplan/nvim-retrail",
   --   config = get_plugin_config("retrail"),
   -- })
   -- }}}
-  -- Zen mode{{{
+  -- Zen mode {{{
   use({
     "folke/zen-mode.nvim",
     config = get_plugin_config("zen-mode"),
