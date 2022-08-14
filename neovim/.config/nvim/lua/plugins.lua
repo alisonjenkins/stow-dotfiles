@@ -103,6 +103,9 @@ packer.startup(function()
     config = get_plugin_config("fold-preview"),
   })
   -- }}}
+  -- Folding improvements {{{
+  use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async", config = get_plugin_config("nvim-ufo") })
+  -- }}}
   -- Fuzzy finding{{{
   use({
     "nvim-telescope/telescope.nvim",

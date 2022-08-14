@@ -44,6 +44,11 @@ wk.setup({ --{{{
   show_help = true, -- show help message on the command line when the popup is visible
 }) --}}}
 
+-- {{{ Folding shortcuts
+vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+-- }}}
+
 -- Format on save and quit {{{
 vim.cmd([[cabbrev wq execute "Format sync" <bar> wq]])
 -- }}}
