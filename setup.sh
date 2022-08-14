@@ -23,6 +23,7 @@ if [ -f /etc/arch-release ]; then
     logseq-desktop
     luarocks
     mold
+    mosh
     neovim
     nerd-fonts-hack
     nnn
