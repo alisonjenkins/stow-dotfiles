@@ -1,4 +1,4 @@
-require("tmux").setup {
+require("tmux").setup({
   -- overwrite default configuration
   -- here, e.g. to enable default bindings
   copy_sync = {
@@ -20,4 +20,4 @@ require("tmux").setup {
     -- enables default keybindings (A-hjkl) for normal mode
     enable_default_keybindings = true,
   },
-}
+})
