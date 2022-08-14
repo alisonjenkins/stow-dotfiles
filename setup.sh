@@ -106,7 +106,7 @@ if [ -f /etc/arch-release ]; then
 
   ASDF_TOOL_VERSIONS=(
     [java]="corretto-11.0.16.8.1"
-    [just]="0.9.4"
+    [just]="1.3.0"
     [maven]="3.8.6"
   )
 
