@@ -16,9 +16,6 @@ windowSize=980,630
 [PlasmaThemeExtended]
 outlineWidth=1
 
-[PlasmaTransientsConfig]
-PreloadWeight=0
-
 [ScreenConnectors]
 10=eDP-1:::0,0 1920x1080
 11=HDMI-1-0:::1920,0 1366x768
