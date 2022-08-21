@@ -183,4 +183,5 @@ stow -t "$HOME" systemd/
 stow -t "$HOME" tig/
 stow -t "$HOME" tmux
 stow -t "$HOME" wezterm/
+stow -t "$HOME" wireplumber/
 stow -t "$HOME" zsh/
