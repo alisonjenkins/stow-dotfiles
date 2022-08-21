@@ -2,11 +2,11 @@
 -- 	return
 -- end
 
-local ls = require "luasnip"
-local types = require "luasnip.util.types"
-require("luasnip.loaders.from_vscode").load()
+local ls = require("luasnip")
+local types = require("luasnip.util.types")
+require("luasnip.loaders.from_vscode").lazy_load()
 
-ls.config.set_config {
+ls.config.set_config({
   -- This enables luasnip to keep around the last used snippet.
   -- You can jump back into it even if you move outside of it.
   history = true,
@@ -24,7 +24,7 @@ ls.config.set_config {
       },
     },
   },
-}
+})
 
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
   if ls.expand_or_jumpable() then
@@ -44,11 +44,11 @@ vim.keymap.set({ "i" }, "<c-l>", function()
   end
 end, { silent = true })
 
-local s = ls.s
-local t = ls.t
-local fmt = require("luasnip.extras.fmt").fmt
-local i = ls.insert_node
-local rep = require("luasnip.extras").rep
+-- local s = ls.s
+-- local t = ls.t
+-- local fmt = require("luasnip.extras.fmt").fmt
+-- local i = ls.insert_node
+-- local rep = require("luasnip.extras").rep
 
 ls.snippets = {
   all = {},

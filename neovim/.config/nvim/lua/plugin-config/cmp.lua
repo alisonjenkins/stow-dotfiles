@@ -83,7 +83,6 @@ cmp.setup({
     -- { name = "orgmode" },
     { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
     { name = "path", keyword_length = 5 },
-    { name = "fuzzy_path", priority = 4 },
     { name = "fuzzy_buffer", priority = 4 },
     {
       name = "tmux",
@@ -100,7 +99,6 @@ cmp.setup({
       -- require("copilot_cmp.comparators").prioritize,
       -- require("copilot_cmp.comparators").score,
       require("cmp_tabnine.compare"),
-      require("cmp_fuzzy_path.compare"),
       require("cmp_fuzzy_buffer.compare"),
       compare.locality,
       compare.recently_used,

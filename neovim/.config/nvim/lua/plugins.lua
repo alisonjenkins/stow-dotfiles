@@ -78,7 +78,6 @@ packer.startup(function()
       "hrsh7th/cmp-nvim-lsp-document-symbol",
       { "tzachar/cmp-tabnine", run = "./install.sh", config = get_plugin_config("tabnine") },
       { "romgrk/fzy-lua-native", run = "make" },
-      { "tzachar/cmp-fuzzy-path", requires = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
       { "tzachar/cmp-fuzzy-buffer", requires = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
     },
   }) -- }}}
