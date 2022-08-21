@@ -17,6 +17,7 @@ local config = {
   term = "wezterm",
   warn_about_missing_glyphs = false,
 
+  -- Kanagawa
   colors = {
     foreground = "#dcd7ba",
     background = "#1f1f28",
@@ -35,6 +36,21 @@ local config = {
     brights = { "#727169", "#e82424", "#98bb6c", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#dcd7ba" },
     indexed = { [16] = "#ffa066", [17] = "#ff5d62" },
   },
+
+  -- Everforest
+  -- colors = {
+  --   foreground = "#d3c6aa",
+  --   background = "#2b3339",
+  --   cursor_bg = "#d3c6aa",
+  --   cursor_border = "#d3c6aa",
+  --   cursor_fg = "#2b3339",
+  --   selection_bg = "#d3c6aa",
+  --   selection_fg = "#2b3339",
+  --
+  --   ansi = { "#4b565c", "#e67e80", "#a7c080", "#dbbc7f", "#7fbbb3", "#d699b6", "#83c092", "#d3c6aa" },
+  --
+  --   brights = { "#4b565c", "#e67e80", "#a7c080", "#dbbc7f", "#7fbbb3", "#d699b6", "#83c092", "#d3c6aa" },
+  -- },
 
   inactive_pane_hsb = {
     hue = 1.0,
