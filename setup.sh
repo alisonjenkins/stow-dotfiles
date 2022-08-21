@@ -11,6 +11,7 @@ if [ -f /etc/arch-release ]; then
     aws-vault
     azure-cli
     discord
+    dive-bin
     docker
     drawio-desktop-bin
     exa
