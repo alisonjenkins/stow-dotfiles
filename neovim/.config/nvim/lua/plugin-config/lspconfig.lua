@@ -10,12 +10,13 @@ local function custom_capabilities() --{{{
   return capabilities
 end --}}}
 
-local function custom_on_attach(client, _) --{{{
+local function custom_on_attach(client, bufnr) --{{{
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
 
   require("lsp-format").on_attach(client)
   require("lsp_signature").on_attach()
+  require("inlay-hints").on_attach(client, bufnr)
 end
 
 --}}}
@@ -57,7 +58,19 @@ lsp_servers["dockerls"] = {}
 -- }}}
 
 -- {{{ Go
-lsp_servers["gopls"] = {}
+lsp_servers["gopls"] = {
+  gopls = {
+    hints = {
+      assignVariableTypes = true,
+      compositeLiteralFields = true,
+      compositeLiteralTypes = true,
+      constantValues = true,
+      functionTypeParameters = true,
+      parameterNames = true,
+      rangeVariableTypes = true,
+    },
+  },
+}
 -- }}}
 
 -- {{{ Groovy
@@ -73,7 +86,13 @@ lsp_servers["jsonls"] = {}
 -- }}}
 
 -- {{{ Lua
-lsp_servers["sumneko_lua"] = {}
+lsp_servers["sumneko_lua"] = {
+  Lua = {
+    hint = {
+      enable = true,
+    },
+  },
+}
 -- }}}
 
 ---- {{{ Python - Pyright

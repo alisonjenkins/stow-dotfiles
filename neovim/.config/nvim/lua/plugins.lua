@@ -205,6 +205,12 @@ packer.startup(function()
     config = get_plugin_config("indent-blankline"),
   })
   -- }}}
+  -- Inlay Hints {{{
+  use({
+    "simrat39/inlay-hints.nvim",
+    config = get_plugin_config("inlay-hints"),
+  })
+  -- }}}
   -- Key mapping {{{
   use({
     "folke/which-key.nvim",
@@ -220,10 +226,11 @@ packer.startup(function()
     requires = {
       "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
       "folke/lua-dev.nvim",
+      "folke/lua-dev.nvim",
       "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
       "ray-x/lsp_signature.nvim",
-      "folke/lua-dev.nvim",
+      "simrat39/inlay-hints.nvim",
       {
         "ray-x/go.nvim",
         config = get_plugin_config("go"),
@@ -383,6 +390,9 @@ packer.startup(function()
   -- Rust {{{
   use({
     "simrat39/rust-tools.nvim",
+    requires = {
+      "simrat39/inlay-hints.nvim",
+    },
     config = get_plugin_config("rust-tools"),
   })
   use({
