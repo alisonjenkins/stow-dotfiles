@@ -71,16 +71,16 @@ cmp.setup({
 
   sources = {
     -- { name = "copilot", priority = 8 },
-    { name = "cmp_tabnine", priority = 8 },
-    { name = "nvim_lsp", priority = 8 },
-    { name = "nvim_lsp_signature_help", priority = 8 },
     -- { name = "cmp_pandoc",  },
     -- { name = "cmdline" },
     -- { name = "crates" },
+    -- { name = "orgmode" },
+    { name = "cmp_tabnine", priority = 8 },
+    { name = "nvim_lsp", priority = 8 },
+    { name = "nvim_lsp_signature_help", priority = 8 },
     { name = "buffer", priority = 7 },
     { name = "luasnip", priority = 7 },
     { name = "nvim_lua", priority = 5 },
-    -- { name = "orgmode" },
     { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
     { name = "path", keyword_length = 5 },
     { name = "fuzzy_buffer", priority = 4 },
@@ -120,7 +120,7 @@ cmp.setup.cmdline("/", {
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
   sources = cmp.config.sources({
-    { name = "fuzzy_path" },
+    -- { name = "fuzzy_path" },
     { name = "cmdline" },
   }),
 })
