@@ -44,8 +44,8 @@ rt.setup({
       ih.set_all()
     end,
     inlay_hints = {
-      auto = false
-    }
+      auto = false,
+    },
   },
   server = {
     standalone = true,
@@ -58,6 +58,11 @@ rt.setup({
 
       ih.on_attach(context, bufnr)
     end,
+    ["rust-analyzer"] = {
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
   },
 
   -- debugging stuff
