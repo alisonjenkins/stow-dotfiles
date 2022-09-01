@@ -1,8 +1,8 @@
-local treesitter = require "nvim-treesitter.configs"
+local treesitter = require("nvim-treesitter.configs")
 
 local ignore_plugin = {}
 
-if vim.fn.has "macunix" == 1 then
+if vim.fn.has("macunix") == 1 then
   table.insert(ignore_plugin, "haskell")
 end
 
@@ -60,3 +60,6 @@ local options = {
 }
 
 treesitter.setup(options)
+
+vim.o.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
