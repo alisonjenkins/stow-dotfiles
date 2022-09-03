@@ -367,6 +367,7 @@ packer.startup(function()
   })
   use({ "nvim-treesitter/nvim-treesitter-context", config = get_plugin_config("nvim-treesitter-context") })
   use({ "nvim-treesitter/playground" })
+  -- use({ "nvim-treesitter/nvim-treesitter-textobjects", config = get_plugin_config("nvim-treesitter-textobjects") })
   --}}}
   -- Twilight Highlighting (Zen mode focusing) {{{
   use({
