@@ -364,7 +364,9 @@ packer.startup(function()
     wants = {
       "nvim-ts-rainbow",
     },
-  }) --}}}
+  })
+  use({ "nvim-treesitter/nvim-treesitter-context", config = get_plugin_config("nvim-treesitter-context") })
+  --}}}
   -- Twilight Highlighting (Zen mode focusing) {{{
   use({
     "folke/twilight.nvim",
