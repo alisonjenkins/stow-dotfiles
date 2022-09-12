@@ -37,6 +37,7 @@ if [ -f /etc/arch-release ]; then
     seahorse
     slack-desktop
     steam
+    stow
     tig
     tilt-bin
     tmux
@@ -69,7 +70,9 @@ if [ -f /etc/arch-release ]; then
     paru --noconfirm -S "${INSTALL_PACKAGES[@]}"
   fi
 
-  ASDF_PLUGINS_INSTALLED=$(asdf plugin list)
+  set +e
+  ASDF_PLUGINS_INSTALLED=($(asdf plugin list 2>&1))
+  set -e
   declare -a ASDF_PLUGINS_TO_INSTALL
   ASDF_PLUGINS_TO_INSTALL=(
     awscli
@@ -92,8 +95,9 @@ if [ -f /etc/arch-release ]; then
     tfsec
   )
 
+  echo "ASDF Plugins installed: ${ASDF_PLUGINS_INSTALLED[@]}"
+
   # Ensure all listed asdf plugins are installed
-  # echo "${ASDF_PLUGINS_INSTALLED[@]}"
   for PLUGIN in "${ASDF_PLUGINS_TO_INSTALL[@]}"; do
     echo "Checking $PLUGIN"
     if ! echo "${ASDF_PLUGINS_INSTALLED[@]}" | grep -q "$PLUGIN" &> /dev/null; then
