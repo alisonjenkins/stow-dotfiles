@@ -99,7 +99,6 @@ vim.g.mapleader = " " --}}}
 -- {{{ Nvim Keymaps
 vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true })
-vim.keymap.set("n", "gd", "<cmd>Lspsaga preview_definition<CR>", { silent = true })
 -- }}}
 
 -- Setup leader based mappings with which-key so they are documented and
@@ -261,7 +260,7 @@ wk.register({
     d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
     f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
     o = { "<cmd>Telescope treesitter<cr>", "Outline" },
-    -- p = { "<cmd>Lspsaga preview_definition<cr>",          "Preview Definition" },
+    p = { "<cmd>Lspsaga peek_definition<cr>", "Preview Definition" },
     q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
     r = { "<cmd>lua RustRunnables<cr>", "Runnables" },
     R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
