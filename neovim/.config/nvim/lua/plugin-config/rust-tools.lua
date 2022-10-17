@@ -16,24 +16,14 @@ local function isdir(path)
 end
 
 local dap = {}
-local code_lldb_extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.6.7/"
+local code_lldb_extension_path = vim.env.HOME .. "/.local/share/nvim/mason/packages/codelldb/"
 
-if isdir(code_lldb_extension_path) then
-  local codelldb_path = code_lldb_extension_path .. "adapter/codelldb"
-  local liblldb_path = code_lldb_extension_path .. "lldb/lib/liblldb.so"
+local codelldb_path = code_lldb_extension_path .. "extension/adapter/codelldb"
+local liblldb_path = code_lldb_extension_path .. "extension/lldb/lib/liblldb.so"
 
-  dap = {
-    adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-  }
-else
-  dap = {
-    adapter = {
-      type = "executable",
-      command = "lldb-vscode",
-      name = "rt_lldb",
-    },
-  }
-end
+dap = {
+  adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+}
 
 local rt = require("rust-tools")
 local ih = require("inlay-hints")
