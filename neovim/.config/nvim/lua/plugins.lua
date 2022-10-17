@@ -225,8 +225,7 @@ packer.startup(function()
     "neovim/nvim-lspconfig",
     requires = {
       "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
-      "folke/lua-dev.nvim",
-      "folke/lua-dev.nvim",
+      "folke/neodev.nvim",
       "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
       "ray-x/lsp_signature.nvim",
@@ -235,10 +234,9 @@ packer.startup(function()
         "ray-x/go.nvim",
         config = get_plugin_config("go"),
         requires = {
-          "mfussenegger/nvim-dap",
+          "ray-x/guihua.lua",
           "rcarriga/nvim-dap-ui",
           "theHamsta/nvim-dap-virtual-text",
-          "ray-x/guihua.lua",
         },
       },
       { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", config = get_plugin_config("lsp_lines") },
