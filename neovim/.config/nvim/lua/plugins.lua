@@ -341,7 +341,7 @@ packer.startup(function()
   use({ "b0o/incline.nvim", config = get_plugin_config("incline") })
   -- }}}
   -- Search index overlay {{{
-  use({ "kevinhwang91/nvim-hlslens" })
+  use({ "kevinhwang91/nvim-hlslens", config = get_plugin_config("nvim-hlslens"), requires = { "nvim-lua/plenary.nvim" } })
   -- }}}
   -- Smooth scrolling {{{
   use({
