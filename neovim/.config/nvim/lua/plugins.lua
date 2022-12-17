@@ -513,3 +513,12 @@ packer.startup(function()
   -- TODO: Consider switching from Lightspeed to hop or get rid of both...
   -- TODO: Setup Java plugin
 end)
+
+if is_bootstrap then
+  print '=================================='
+  print '    Plugins are being installed'
+  print '    Wait until Packer completes,'
+  print '       then restart nvim'
+  print '=================================='
+  return
+end
