@@ -1,6 +1,7 @@
 -- vim: set foldmethod=marker foldlevel=0:
 local packer_installed, packer = pcall(require, "packer")
 local use = packer.use
+local is_bootstrap = false
 
 local function bootstrap_packer() --{{{
   local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -14,7 +15,15 @@ local function get_plugin_config(name) --{{{
   return string.format('require("plugin-config/%s")', name)
 end --}}}
 
+local function run_plugin_config(name) --{{{
+  local file = loadfile(string.format('plugin-config/%s'), name)
+  if file ~= nil then
+    file()
+  end
+end --}}}
+
 if not packer_installed then --{{{
+  is_bootstrap = true
   bootstrap_packer()
   _, packer = pcall(require, "packer")
 end --}}}
@@ -474,6 +483,10 @@ packer.startup(function()
     "folke/zen-mode.nvim",
     config = get_plugin_config("zen-mode"),
   }) --}}}
+
+  if is_bootstrap then
+    require('packer').sync()
+  end
 
   -- TODO: Configure Packer's compiled code to be cached by Lua cache
   -- TODO: Setup more lazy loading for packer
