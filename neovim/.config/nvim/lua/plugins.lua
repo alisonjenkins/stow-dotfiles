@@ -16,7 +16,7 @@ local function get_plugin_config(name) --{{{
 end --}}}
 
 local function run_plugin_config(name) --{{{
-  local file = loadfile(string.format('plugin-config/%s'), name)
+  local file = loadfile(string.format("plugin-config/%s"), name)
   if file ~= nil then
     file()
   end
