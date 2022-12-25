@@ -276,6 +276,25 @@ wk.register({
   -- Markdown Preview mappings{{{
   M = { "<cmd>MarkdownPreviewToggle<cr>", "Preview Markdown" }, --}}}
 
+  -- Neural AI completion mappings {{{
+  n = {
+    name = "Neural AI code completion",
+
+    n = {
+      "<cmd>NeuralPrompt<cr>",
+      "Neural Prompt",
+    },
+    d = {
+      "<cmd>NeuralCode add documentation<cr>",
+      "Add documentation to code",
+    },
+    s = {
+      "<cmd>NeuralText Fix spelling and grammar and rephrase in a professional tone<cr>",
+      "Fix spelling and grammar and rephrase in a proffesional tone",
+    },
+  },
+  -- }}}
+
   -- Git mappings (all start with g){{{
   g = {
     name = "+git",

@@ -44,6 +44,17 @@ packer.startup(function()
   use({ "wbthomason/packer.nvim" }) --}}}
   -- Lua caching {{{
   use({ "lewis6991/impatient.nvim" }) --}}}
+  -- {{{ Neural AI completion
+  use({
+    "dense-analysis/neural",
+    config = get_plugin_config("neural"),
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "ElPiloto/significant.nvim",
+    },
+    rocks = { "lua-cjson" },
+  })
+  -- }}}
   -- Add restoration of last location in files {{{
   use({
     "ethanholz/nvim-lastplace",
