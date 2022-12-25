@@ -1,2 +1,4 @@
 neovim/.config/nvim/plugin/packer_compiled.lua
+neovim/.config/nvim/spell/en.utf-8.add
+neovim/.config/nvim/spell/en.utf-8.add.spl
 .luarc.json
