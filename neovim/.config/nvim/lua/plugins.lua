@@ -490,7 +490,7 @@ packer.startup(function()
   }) --}}}
 
   if is_bootstrap then
-    require('packer').sync()
+    require("packer").sync()
   end
 
   -- TODO: Configure Packer's compiled code to be cached by Lua cache
