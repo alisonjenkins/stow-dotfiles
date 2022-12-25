@@ -114,6 +114,12 @@ lsp_servers["sumneko_lua"] = {
       hint = {
         enable = true,
       },
+      workspace = {
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false,
+      },
     },
   },
 }
@@ -151,18 +157,6 @@ require("toggle_lsp_diagnostics").init({ underline = false, virtual_text = { spa
 
 ----{{{ LSP setup
 for lsp_name, lsp_settings in pairs(lsp_servers) do
-  if lsp_name == "sumneko_lua" then
-    lspconfig.sumneko_lua.setup({
-      settings = {
-        Lua = {
-          completion = {
-            callSnippet = "Replace",
-          },
-        },
-      },
-    })
-  else
-    lspconfig[lsp_name].setup(default(lsp_settings))
-  end
+  lspconfig[lsp_name].setup(default(lsp_settings))
 end
 --}}}
