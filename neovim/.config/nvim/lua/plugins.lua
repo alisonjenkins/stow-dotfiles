@@ -54,6 +54,11 @@ packer.startup(function()
   use({
     "junegunn/vim-easy-align",
   }) --}}}
+  -- Ansi Colour Codes {{{
+  use({
+    "powerman/vim-plugin-AnsiEsc",
+  })
+  -- }}}
   -- Colour schemes {{{
   use({ "folke/tokyonight.nvim", config = get_plugin_config("tokyonight") })
   use({ "rebelot/kanagawa.nvim", config = get_plugin_config("kanagawa") })
