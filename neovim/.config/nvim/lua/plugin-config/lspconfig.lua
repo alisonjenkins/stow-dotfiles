@@ -1,11 +1,17 @@
 -- vim: set foldmethod=marker foldlevel=0:
 
 local function custom_capabilities() --{{{
-  local capabilities = require("cmp_nvim_lsp").default_capabilities()
+  local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+  if not ok then
+    return vim.lsp.protocol.make_client_capabilities()
+  end
+
+  local capabilities = cmp_nvim_lsp.default_capabilities()
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
   }
+
   return capabilities
 end --}}}
 
