@@ -93,6 +93,9 @@ lsp_servers["jsonls"] = {}
 -- {{{ Lua
 lsp_servers["sumneko_lua"] = {
   Lua = {
+    completion = {
+      callSnippet = "Replace",
+    },
     hint = {
       enable = true,
     },
