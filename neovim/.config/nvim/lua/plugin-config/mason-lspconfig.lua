@@ -44,19 +44,3 @@ require("mason-lspconfig").setup({
     -- "yaml-language-server",
   },
 })
-
-require("mason-lspconfig").setup_handlers({
-  function(server_name)
-    require("lspconfig")[server_name].setup({})
-  end,
-  -- ["rust_analyzer"] = function()
-  --   require("rust-tools").setup({})
-  -- end,
-  ["gopls"] = function()
-    require("go").setup({})
-  end,
-  ["sumneko_lua"] = function()
-    local neodev = require("neodev").setup({})
-    require("lspconfig").sumneko_lua.setup(neodev)
-  end,
-})
