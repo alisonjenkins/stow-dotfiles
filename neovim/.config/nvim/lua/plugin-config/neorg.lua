@@ -10,10 +10,10 @@ require("neorg").setup({
         },
       },
     },
-    ["core.gtd.base"] = {
-      config = {
-        workspace = "work",
-      },
-    },
+    -- ["core.gtd.base"] = {
+    --   config = {
+    --     workspace = "work",
+    --   },
+    -- },
   },
 })
