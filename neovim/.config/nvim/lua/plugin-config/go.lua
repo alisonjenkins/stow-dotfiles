@@ -1,4 +1,9 @@
-require("go").setup {
+local ok, go = pcall(require, "go")
+if not ok then
+	return
+end
+
+go.setup {
   goimport = "gopls", -- goimport command, can be gopls[default] or goimport
   gofmt = "gofumpt", --gofmt cmd,
   max_line_len = 120, -- max line length in goline format

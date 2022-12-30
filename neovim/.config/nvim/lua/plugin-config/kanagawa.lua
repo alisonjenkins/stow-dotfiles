@@ -1,4 +1,9 @@
-require("kanagawa").setup {
+local ok, kanagawa = pcall(require, "kanagawa")
+if not ok then
+	return
+end
+
+kanagawa.setup {
   undercurl = true, -- enable undercurls
   commentStyle = { italic = true },
   keywordStyle = { italic = true },
@@ -12,3 +17,5 @@ require("kanagawa").setup {
   colors = {},
   overrides = {},
 }
+
+vim.cmd([[colorscheme kanagawa]])

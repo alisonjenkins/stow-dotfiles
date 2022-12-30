@@ -1,4 +1,10 @@
-require("twilight").setup {
+local ok, twilight = pcall(require, "twilight")
+
+if not ok then
+	return
+end
+
+twilight.setup {
   dimming = {
     alpha = 0.25, -- amount of dimming
     -- we try to get the foreground from the highlight groups or fallback color

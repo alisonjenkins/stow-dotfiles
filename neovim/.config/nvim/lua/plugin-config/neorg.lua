@@ -1,4 +1,10 @@
-require("neorg").setup({
+local ok, neorg = pcall(require,"neorg")
+
+if not ok then
+	return
+end
+
+neorg.setup({
   -- Tell Neorg what modules to load
   load = {
     ["core.defaults"] = {}, -- Load all the default modules

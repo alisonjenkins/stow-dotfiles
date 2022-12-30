@@ -1,4 +1,10 @@
-require("lsp-format").setup {
+local ok, lspformat = pcall(require, "lsp-format")
+
+if not ok then
+	return
+end
+
+lspformat.setup {
   -- typescript = { tab_width = 4 },
   -- yaml = { tab_width = 2 },
 }

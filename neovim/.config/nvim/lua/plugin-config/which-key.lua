@@ -1,5 +1,9 @@
 -- vim: set foldmethod=marker foldlevel=0:
-local wk = require("which-key")
+local ok, wk = pcall(require, "which-key")
+
+if not ok then
+	return
+end
 
 wk.setup({ --{{{
   plugins = {

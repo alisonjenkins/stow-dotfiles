@@ -1,4 +1,9 @@
-require("mini.surround").setup({}) -- Surround mappings like vim-sandwich and vim-surround
+local ok, surround = pcall(require, "mini.surround")
+if not ok then
+	return
+end
+
+surround.setup({}) -- Surround mappings like vim-sandwich and vim-surround
 require("mini.trailspace").setup({}) -- Highlight and remove trailing spaces
 
 require("mini.jump2d").setup({

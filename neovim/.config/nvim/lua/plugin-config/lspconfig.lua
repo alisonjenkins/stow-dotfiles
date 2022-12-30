@@ -6,6 +6,11 @@ if neodev_ok then
 end
 
 local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+
+if not lspconfig_ok then
+	return
+end
+
 local lsp_defaults = lspconfig.util.default_config
 
 if not lspconfig_ok then

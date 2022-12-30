@@ -1,4 +1,9 @@
-local null_ls = require("null-ls")
+local ok, null_ls = pcall(require, "null-ls")
+
+if not ok then
+	return
+end
+
 local lSsources = {
   null_ls.builtins.formatting.terraform_fmt,
   null_ls.builtins.formatting.prettierd.with({

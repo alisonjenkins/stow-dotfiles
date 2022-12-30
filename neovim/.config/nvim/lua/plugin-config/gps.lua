@@ -1,4 +1,8 @@
-require("nvim-gps").setup {
+local ok, gps = pcall(require, "nvim-gps")
+if not ok then
+	return
+end
+gps.setup {
   disable_icons = false, -- Setting it to true will disable all icons
 
   icons = {

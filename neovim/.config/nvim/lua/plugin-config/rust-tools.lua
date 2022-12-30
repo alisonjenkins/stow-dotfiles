@@ -15,18 +15,32 @@ local function isdir(path)
   return exists(path .. "/")
 end
 
-local dap = {}
 local code_lldb_extension_path = vim.env.HOME .. "/.local/share/nvim/mason/packages/codelldb/"
 
 local codelldb_path = code_lldb_extension_path .. "extension/adapter/codelldb"
 local liblldb_path = code_lldb_extension_path .. "extension/lldb/lib/liblldb.so"
 
-dap = {
-  adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
+local rustdap_ok, rustdap = pcall(require, "rust-tools.dap")
+
+if not rustdap_ok then
+	return
+end
+
+local dap = {
+  adapter = rustdap.get_codelldb_adapter(codelldb_path, liblldb_path),
 }
 
-local rt = require("rust-tools")
-local ih = require("inlay-hints")
+local rt_ok, rt = pcall(require, "rust-tools")
+
+if not rt_ok then
+	return
+end
+
+local ih_ok, ih = pcall(require, "inlay-hints")
+
+if not ih_ok then
+	return
+end
 
 rt.setup({
   tools = {

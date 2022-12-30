@@ -1,4 +1,10 @@
-require("mason-lspconfig").setup({
+local ok, mlspconfig = pcall(require,"mason-lspconfig")
+
+if not ok then
+	return
+end
+
+mlspconfig.setup({
   automatic_installation = true,
 
   ensure_installed = {
@@ -33,7 +39,7 @@ require("mason-lspconfig").setup({
     -- "shellharden",
     -- "shfmt",
     "sqls",
-    -- "stylua",
+    "stylua",
     "sumneko_lua",
     -- "terraform-ls",
     "texlab",

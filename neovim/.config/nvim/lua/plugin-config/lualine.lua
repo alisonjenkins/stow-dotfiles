@@ -1,5 +1,14 @@
-local lualine = require("lualine")
-local gps = require("nvim-gps")
+local ok, lualine = pcall(require, "lualine")
+
+if not ok then
+	return
+end
+
+local gps_ok, gps = pcall(require, "nvim-gps")
+
+if not gps_ok then
+	return
+end
 
 local colors = {
   bg = "#202328",
