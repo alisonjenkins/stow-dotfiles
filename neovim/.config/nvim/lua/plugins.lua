@@ -9,7 +9,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local function get_plugin_config(name) --{{{
-  require(string.format("plugin-config/%s", name))
+  return function()
+    require(string.format("plugin-config/%s", name))
+  end
 
   -- local file = loadfile(string.format("plugin-config/%s", name))
   -- if file ~= nil then
@@ -18,12 +20,9 @@ local function get_plugin_config(name) --{{{
   -- return nil
 end --}}}
 
-
 local plugins = {
   -- Lua caching {{{
-  {
-    "lewis6991/impatient.nvim"
-  },
+  -- { "lewis6991/impatient.nvim" },
   -- }}}
   -- {{{ Neural AI completion
   -- {
@@ -37,34 +36,32 @@ local plugins = {
   -- },
   -- }}}
   -- Add restoration of last location in files {{{
-  -- {
-    -- "ethanholz/nvim-lastplace",
-    -- config = get_plugin_config("lastplace"),
-  -- },
+  {
+    "ethanholz/nvim-lastplace",
+    config = get_plugin_config("lastplace"),
+  },
   --}}}
   -- Alignment {{{
   -- TODO: Configure the mappings for this plugin.
-  {
-    "junegunn/vim-easy-align",
-  },
+  { "junegunn/vim-easy-align" },
   --}}}
   -- Key mapping {{{
   {
-      "folke/which-key.nvim",
-      dependencies = {
-        "aserowy/tmux.nvim",
-      },
-      lazy = false,
-      config = get_plugin_config("which-key"),
+    "folke/which-key.nvim",
+    dependencies = {
+      "aserowy/tmux.nvim",
+    },
+    lazy = false,
+    config = get_plugin_config("which-key"),
   },
   --}}}
   -- Colour schemes {{{
-  { "rebelot/kanagawa.nvim", lazy = false, priority = 1000, config = get_plugin_config("kanagawa"), },
+  { "rebelot/kanagawa.nvim", lazy = false, priority = 1000, config = get_plugin_config("kanagawa") },
   { "folke/tokyonight.nvim", config = get_plugin_config("tokyonight") },
   { "sainnhe/everforest", config = get_plugin_config("everforest") },
   -- }}}
   -- Commenting {{{
-  { "numToStr/Comment.nvim", config = get_plugin_config("comment") },
+  { "numToStr/Comment.nvim", config = get_plugin_config("comment"), lazy = false },
   --}}}
   -- Completion {{{
   {
@@ -102,16 +99,11 @@ local plugins = {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     lazy = false,
     priority = 1001,
-    -- wants = "nvim-web-devicons",
     config = get_plugin_config("alpha"),
   },
   -- }}}
   -- Neovim startup profiler {{{
-  {
-    "dstein64/vim-startuptime",
-    -- lazy-load on a command
-    cmd = "StartupTime",
-  },
+  { "dstein64/vim-startuptime", cmd = "StartupTime" },
   -- }}}
   -- Tmux integration {{{
   {
@@ -150,7 +142,6 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     config = get_plugin_config("telescope"),
-    wants = "nvim-web-devicons",
     dependencies = {
       "ThePrimeagen/git-worktree.nvim",
       "ahmedkhalf/project.nvim",
@@ -164,12 +155,12 @@ local plugins = {
       "nvim-telescope/telescope-packer.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
       { "nvim-telescope/telescope-fzy-native.nvim", dependencies = { "romgrk/fzy-lua-native" } },
-      { "kyazdani42/nvim-web-devicons", opt = true },
+      { "kyazdani42/nvim-web-devicons" },
     },
   },
   {
     "junegunn/fzf",
-    run = function()
+    build = function()
       vim.fn["fzf#install"]()
     end,
   },
@@ -201,8 +192,7 @@ local plugins = {
   },
   {
     "mattn/gist-vim",
-    wants = "webapi-vim",
-    dependencies = { "mattn/webapi-vim", opt = true },
+    dependencies = { "mattn/webapi-vim" },
     cmd = "Gist",
     config = get_plugin_config("gist"),
   },
@@ -306,6 +296,7 @@ local plugins = {
           "ray-x/guihua.lua",
           "rcarriga/nvim-dap-ui",
           "theHamsta/nvim-dap-virtual-text",
+          "williamboman/mason-lspconfig.nvim",
         },
       },
       { url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim", config = get_plugin_config("lsp_lines") },
@@ -317,15 +308,18 @@ local plugins = {
         dependencies = { "nvim-lua/plenary.nvim" },
       },
       { "williamboman/mason.nvim", config = get_plugin_config("mason") },
-      { "williamboman/mason-lspconfig.nvim", config = get_plugin_config("mason-lspconfig") },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        config = get_plugin_config("mason-lspconfig"),
+        dependencies = "williamboman/mason.nvim",
+      },
       { "lukas-reineke/lsp-format.nvim", config = get_plugin_config("lsp-format") },
     },
     config = get_plugin_config("lspconfig"),
   },
   {
     "folke/lsp-trouble.nvim",
-    wants = { "nvim-web-devicons", "nvim-lspconfig" },
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "kyazdani42/nvim-web-devicons", "nvim-lspconfig" },
     config = get_plugin_config("trouble"),
   },
   {
@@ -352,7 +346,7 @@ local plugins = {
   -- Neorg (Neovim Org mode) {{{
   {
     "nvim-neorg/neorg",
-    run = ":Neorg sync-parsers",
+    build = ":Neorg sync-parsers",
     config = get_plugin_config("neorg"),
     dependencies = "nvim-lua/plenary.nvim",
   },
@@ -373,16 +367,28 @@ local plugins = {
   { "b0o/incline.nvim", config = get_plugin_config("incline") },
   -- }}}
   -- Search index overlay {{{
-  { "kevinhwang91/nvim-hlslens", config = get_plugin_config("nvim-hlslens"), dependencies = { "nvim-lua/plenary.nvim" } },
+  {
+    "kevinhwang91/nvim-hlslens",
+    config = get_plugin_config("nvim-hlslens"),
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
   -- }}}
   -- Smooth scrolling {{{
-  { "karb94/neoscroll.nvim", keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-e>", "zt", "zz", "zb" }, config = get_plugin_config("neoscroll") },
+  {
+    "karb94/neoscroll.nvim",
+    keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-e>", "zt", "zz", "zb" },
+    config = get_plugin_config("neoscroll"),
+  },
   --}}}
   -- Statusline {{{
   { "nvim-lualine/lualine.nvim", dependencies = { "SmiteshP/nvim-gps" }, config = get_plugin_config("lualine") },
   --}}}
   -- Tabline {{{
-  { "alvarosevilla95/luatab.nvim", config = get_plugin_config("luatab"), requires = { "kyazdani42/nvim-web-devicons" } },
+  {
+    "alvarosevilla95/luatab.nvim",
+    config = get_plugin_config("luatab"),
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+  },
   -- }}}
   -- Terraform Plugins {{{
   { "hashivim/vim-terraform", config = get_plugin_config("terraform"), dependencies = "godlygeek/tabular" },
@@ -395,7 +401,7 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     config = get_plugin_config("treesitter"),
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     dependencies = {
       -- { "nvim-treesitter/nvim-treesitter-textobjects" },
       {
@@ -403,12 +409,20 @@ local plugins = {
         config = get_plugin_config("hlargs"),
         dependencies = { "nvim-treesitter/nvim-treesitter" },
       },
-      { "p00f/nvim-ts-rainbow", opt = true },
+      { "p00f/nvim-ts-rainbow" },
     },
   },
-  { "nvim-treesitter/nvim-treesitter-context", config = get_plugin_config("nvim-treesitter-context") },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    config = get_plugin_config("nvim-treesitter-context"),
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-textobjects",
+  --   config = get_plugin_config("nvim-treesitter-textobjects"),
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  -- },
   { "nvim-treesitter/playground" },
-  { "nvim-treesitter/nvim-treesitter-textobjects", config = get_plugin_config("nvim-treesitter-textobjects") },
   --}}}
   -- Twilight Highlighting (Zen mode focusing) {{{
   {
