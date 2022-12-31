@@ -122,7 +122,7 @@ local plugins = {
   },
   -- }}}
   -- Detect indent {{{
-  { "tpope/vim-sleuth" },
+  { "tpope/vim-sleuth", lazy = true, event = "BufRead" },
   -- }}}
   -- Faster filetypes plugin {{{
   { "nathom/filetype.nvim" },
@@ -511,7 +511,7 @@ local plugins = {
   },
   --}}}
   -- Speeddating (Allows incrementing and decrementing of dates) {{{
-  { "tpope/vim-speeddating", lazy = true, event = "BufEnter" },
+  { "tpope/vim-speeddating", lazy = true, keys = { "C-a", "C-x" } },
   --}}}
   -- Syntax files {{{
   -- { "sheerun/vim-polyglot" },
