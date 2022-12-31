@@ -128,7 +128,7 @@ local plugins = {
   { "nathom/filetype.nvim" },
   -- }}}
   -- File manager {{{
-  { "justinmk/vim-dirvish" },
+  { "elihunter173/dirbuf.nvim" },
   --}}}
   -- Fuzzy finding {{{
   {
