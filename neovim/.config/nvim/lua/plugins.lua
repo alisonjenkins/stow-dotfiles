@@ -21,9 +21,6 @@ local function get_plugin_config(name) --{{{
 end --}}}
 
 local plugins = {
-  -- Lua caching {{{
-  -- { "lewis6991/impatient.nvim" },
-  -- }}}
   -- {{{ Neural AI completion
   -- {
   --   "dense-analysis/neural",
