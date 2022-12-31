@@ -57,11 +57,11 @@ local plugins = {
   -- }}}
   -- Colour schemes {{{
   { "rebelot/kanagawa.nvim", lazy = false, priority = 1000, config = get_plugin_config("kanagawa") },
-  { "folke/tokyonight.nvim", config = get_plugin_config("tokyonight") },
-  { "sainnhe/everforest", config = get_plugin_config("everforest") },
+  { "folke/tokyonight.nvim", config = get_plugin_config("tokyonight"), lazy = true },
+  { "sainnhe/everforest", config = get_plugin_config("everforest"), lazy = true },
   -- }}}
   -- Commenting {{{
-  { "numToStr/Comment.nvim", config = get_plugin_config("comment"), lazy = false },
+  { "numToStr/Comment.nvim", config = get_plugin_config("comment"), lazy = true, keys = "gcc" },
   --}}}
   -- Completion {{{
   {
@@ -128,7 +128,7 @@ local plugins = {
   { "nathom/filetype.nvim" },
   -- }}}
   -- File manager {{{
-  { "elihunter173/dirbuf.nvim" },
+  { "elihunter173/dirbuf.nvim", lazy = true, keys = { "-" }, cmd = "Dirbuf" },
   --}}}
   -- Fuzzy finding {{{
   {
@@ -241,6 +241,7 @@ local plugins = {
   -- Language servers + LSP tools {{{
   {
     "mfussenegger/nvim-dap",
+    lazy = true,
     config = function()
       local dap = require("dap")
       local port = 32562
@@ -318,6 +319,7 @@ local plugins = {
   },
   {
     "j-hui/fidget.nvim",
+    lazy = true,
     config = get_plugin_config("fidget"),
   },
   {
@@ -371,7 +373,7 @@ local plugins = {
   { "diepm/vim-rest-console" },
   -- }}}
   -- Per split buffer names {{{
-  { "b0o/incline.nvim", config = get_plugin_config("incline") },
+  { "b0o/incline.nvim", config = get_plugin_config("incline"), lazy = true, event = "VeryLazy" },
   -- }}}
   -- Search index overlay {{{
   {
@@ -400,8 +402,13 @@ local plugins = {
   },
   -- }}}
   -- Terraform Plugins {{{
-  { "hashivim/vim-terraform", config = get_plugin_config("terraform") },
-  { "alanjjenkins/vim-terraform-completion", config = get_plugin_config("terraform-completion") },
+  { "hashivim/vim-terraform", config = get_plugin_config("terraform"), lazy = true, ft = "terraform" },
+  {
+    "alanjjenkins/vim-terraform-completion",
+    config = get_plugin_config("terraform-completion"),
+    lazy = true,
+    ft = "terraform",
+  },
   -- }}}
   -- Todo comments {{{
   {
@@ -447,6 +454,12 @@ local plugins = {
   {
     "folke/twilight.nvim",
     config = get_plugin_config("twilight"),
+    lazy = true,
+    cmd = {
+      "Twilight",
+      "TwilightEnable",
+      "TwilightDisable",
+    },
   },
   --}}}
   -- Pandoc integration {{{
