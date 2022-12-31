@@ -174,7 +174,20 @@ local plugins = {
   {
     "tpope/vim-fugitive",
     lazy = true,
-    event = "VeryLazy",
+    cmd = {
+      "GBrowse",
+      "GDelete",
+      "GMove",
+      "GRename",
+      "Gdiffsplit",
+      "Gedit",
+      "Ggrep",
+      "Git",
+      "Glgrep",
+      "Gread",
+      "Gvdiffsplit",
+      "Gwrite",
+    },
     dependencies = {
       -- (vimscript) Plugin improve the git commit interface showing diffs to remind you want you are changing.
       "rhysd/committia.vim",
@@ -211,7 +224,7 @@ local plugins = {
   {
     "pwntester/octo.nvim",
     lazy = true,
-    event = "VeryLazy",
+    cmd = "Octo",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
