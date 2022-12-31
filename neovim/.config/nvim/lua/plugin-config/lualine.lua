@@ -11,121 +11,121 @@ if not gps_ok then
 end
 
 local colors = {
-  bg = "#202328",
-  fg = "#bbc2cf",
-  yellow = "#ECBE7B",
-  cyan = "#008080",
-  darkblue = "#081633",
-  green = "#98be65",
-  orange = "#FF8800",
-  violet = "#a9a1e1",
-  magenta = "#c678dd",
-  blue = "#51afef",
-  red = "#ec5f67",
+	bg = "#202328",
+	fg = "#bbc2cf",
+	yellow = "#ECBE7B",
+	cyan = "#008080",
+	darkblue = "#081633",
+	green = "#98be65",
+	orange = "#FF8800",
+	violet = "#a9a1e1",
+	magenta = "#c678dd",
+	blue = "#51afef",
+	red = "#ec5f67",
 }
 
 local mode_color = {
-  n = colors.red,
-  i = colors.green,
-  v = colors.blue,
-  [""] = colors.blue,
-  V = colors.blue,
-  c = colors.magenta,
-  no = colors.red,
-  s = colors.orange,
-  S = colors.orange,
-  [""] = colors.orange,
-  ic = colors.yellow,
-  R = colors.violet,
-  Rv = colors.violet,
-  cv = colors.red,
-  ce = colors.red,
-  r = colors.cyan,
-  rm = colors.cyan,
-  ["r?"] = colors.cyan,
-  ["!"] = colors.red,
-  t = colors.red,
+	n = colors.red,
+	i = colors.green,
+	v = colors.blue,
+	[""] = colors.blue,
+	V = colors.blue,
+	c = colors.magenta,
+	no = colors.red,
+	s = colors.orange,
+	S = colors.orange,
+	[""] = colors.orange,
+	ic = colors.yellow,
+	R = colors.violet,
+	Rv = colors.violet,
+	cv = colors.red,
+	ce = colors.red,
+	r = colors.cyan,
+	rm = colors.cyan,
+	["r?"] = colors.cyan,
+	["!"] = colors.red,
+	t = colors.red,
 }
 
 local conditions = {
-  buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
-  end,
-  hide_in_width = function()
-    return vim.fn.winwidth(0) > 80
-  end,
-  check_git_workspace = function()
-    local filepath = vim.fn.expand("%:p:h")
-    local gitdir = vim.fn.finddir(".git", filepath .. ";")
-    return gitdir and #gitdir > 0 and #gitdir < #filepath
-  end,
+	buffer_not_empty = function()
+		return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
+	end,
+	hide_in_width = function()
+		return vim.fn.winwidth(0) > 80
+	end,
+	check_git_workspace = function()
+		local filepath = vim.fn.expand("%:p:h")
+		local gitdir = vim.fn.finddir(".git", filepath .. ";")
+		return gitdir and #gitdir > 0 and #gitdir < #filepath
+	end,
 }
 
 -- Config
 local config = {
-  options = {
-    globalstatus = true,
-    icons_enabled = true,
-    component_separators = "",
-    section_separators = "",
-    theme = {
-      normal = { c = { fg = colors.fg, bg = colors.bg } },
-      inactive = { c = { fg = colors.fg, bg = colors.bg } },
-    },
-  },
-  sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {},
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_v = {},
-    lualine_y = {},
-    lualine_z = {},
-    lualine_c = {},
-    lualine_x = {},
-  },
+	options = {
+		globalstatus = true,
+		icons_enabled = true,
+		component_separators = "",
+		section_separators = "",
+		theme = {
+			normal = { c = { fg = colors.fg, bg = colors.bg } },
+			inactive = { c = { fg = colors.fg, bg = colors.bg } },
+		},
+	},
+	sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_y = {},
+		lualine_z = {},
+		lualine_c = {},
+		lualine_x = {},
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_v = {},
+		lualine_y = {},
+		lualine_z = {},
+		lualine_c = {},
+		lualine_x = {},
+	},
 }
 
 local function ins_left(component)
-  table.insert(config.sections.lualine_c, component)
+	table.insert(config.sections.lualine_c, component)
 end
 
 -- Inserts a component in lualine_x to right section
 local function ins_right(component)
-  table.insert(config.sections.lualine_x, component)
+	table.insert(config.sections.lualine_x, component)
 end
 
 ins_left({
-  -- mode component
-  function()
-    -- auto change color according to neovims mode
-    vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
-    return "▊"
-  end,
-  color = "LualineMode",
-  padding = { right = 1 },
+	-- mode component
+	function()
+		-- auto change color according to neovims mode
+		vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
+		return "▊"
+	end,
+	color = "LualineMode",
+	padding = { right = 1 },
 })
 
 ins_left({
-  "branch",
-  icon = "",
-  color = { fg = colors.violet, gui = "bold" },
+	"branch",
+	icon = "",
+	color = { fg = colors.violet, gui = "bold" },
 })
 
 ins_left({
-  "diff",
-  symbols = { added = "+ ", modified = "~ ", removed = "- " },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.hide_in_width,
+	"diff",
+	symbols = { added = "+ ", modified = "~ ", removed = "- " },
+	diff_color = {
+		added = { fg = colors.green },
+		modified = { fg = colors.orange },
+		removed = { fg = colors.red },
+	},
+	cond = conditions.hide_in_width,
 })
 
 -- ins_left {
@@ -135,11 +135,11 @@ ins_left({
 -- }
 
 ins_left({
-  "filename",
-  -- color = { fg = colors.green, gui = "bold" },
-  cond = conditions.buffer_not_empty,
-  file_status = true,
-  path = 1,
+	"filename",
+	-- color = { fg = colors.green, gui = "bold" },
+	cond = conditions.buffer_not_empty,
+	file_status = true,
+	path = 1,
 })
 
 ins_left({ "location" })
@@ -147,40 +147,40 @@ ins_left({ "location" })
 ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
 ins_left({
-  "diagnostics",
-  sources = { "nvim_lsp" },
-  symbols = { error = " ", warn = " ", info = " " },
-  diagnostics_color = {
-    color_error = { fg = colors.red },
-    color_warn = { fg = colors.yellow },
-    color_info = { fg = colors.cyan },
-  },
+	"diagnostics",
+	sources = { "nvim_lsp" },
+	symbols = { error = " ", warn = " ", info = " " },
+	diagnostics_color = {
+		color_error = { fg = colors.red },
+		color_warn = { fg = colors.yellow },
+		color_info = { fg = colors.cyan },
+	},
 })
 
 ins_left({
-  gps.get_location,
-  cond = gps.is_available,
+	gps.get_location,
+	cond = gps.is_available,
 })
 
 ins_left({
-  -- Lsp server name
-  function()
-    local msg = "No Active Lsp"
-    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-    local clients = vim.lsp.get_active_clients()
-    if next(clients) == nil then
-      return msg
-    end
-    for _, client in ipairs(clients) do
-      local filetypes = client.config.filetypes
-      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-        return client.name
-      end
-    end
-    return msg
-  end,
-  icon = " LSP:",
-  color = { fg = "#ffffff", gui = "bold" },
+	-- Lsp server name
+	function()
+		local msg = "No Active Lsp"
+		local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+		local clients = vim.lsp.get_active_clients()
+		if next(clients) == nil then
+			return msg
+		end
+		for _, client in ipairs(clients) do
+			local filetypes = client.config.filetypes
+			if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+				return client.name
+			end
+		end
+		return msg
+	end,
+	icon = " LSP:",
+	color = { fg = "#ffffff", gui = "bold" },
 })
 
 -- ins_right({
@@ -198,12 +198,12 @@ ins_left({
 -- })
 
 ins_right({
-  function()
-    vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
-    return "▊"
-  end,
-  color = "LualineMode",
-  padding = { left = 1 },
+	function()
+		vim.api.nvim_command("hi! LualineMode guifg=" .. mode_color[vim.fn.mode()] .. " guibg=" .. colors.bg)
+		return "▊"
+	end,
+	color = "LualineMode",
+	padding = { left = 1 },
 })
 
 lualine.setup(config)

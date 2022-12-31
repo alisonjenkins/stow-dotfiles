@@ -4,9 +4,9 @@ if not ok then
 end
 
 inlay.setup({
-  only_current_line = true,
+	only_current_line = true,
 
-  eol = {
-    right_align = true,
-  }
+	eol = {
+		right_align = true,
+	},
 })

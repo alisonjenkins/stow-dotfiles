@@ -1,4 +1,4 @@
-local ok, saga = pcall(require,"lspsaga")
+local ok, saga = pcall(require, "lspsaga")
 if not ok then
 	return
 end

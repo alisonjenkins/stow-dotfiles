@@ -4,4 +4,4 @@ if not ok then
 	return
 end
 
-luatab.setup {}
+luatab.setup({})

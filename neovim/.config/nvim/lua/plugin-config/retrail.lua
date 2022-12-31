@@ -1,10 +1,10 @@
 require("retrail").setup({
-  filetype = {
-    exclude = {
-      "alpha",
-      "diff",
-      "dirvish",
-      "help",
-    },
-  },
+	filetype = {
+		exclude = {
+			"alpha",
+			"diff",
+			"dirvish",
+			"help",
+		},
+	},
 })

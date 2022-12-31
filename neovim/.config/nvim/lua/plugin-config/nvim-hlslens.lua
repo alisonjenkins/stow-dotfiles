@@ -1,4 +1,4 @@
-local ok, hlslens = pcall(require, 'hlslens')
+local ok, hlslens = pcall(require, "hlslens")
 
 if not ok then
 	return
