@@ -43,7 +43,7 @@ local plugins = {
   --}}}
   -- Alignment {{{
   -- TODO: Configure the mappings for this plugin.
-  { "junegunn/vim-easy-align" },
+  { "junegunn/vim-easy-align", lazy = true },
   --}}}
   -- Key mapping {{{
   {
@@ -154,6 +154,7 @@ local plugins = {
   },
   {
     "junegunn/fzf",
+    lazy = true,
     build = function()
       vim.fn["fzf#install"]()
     end,
@@ -220,7 +221,7 @@ local plugins = {
   --   "lewis6991/gitsigns.nvim",
   --   config = get_plugin_config("gitsigns"),
   -- },
-  { "lambdalisue/gina.vim" },
+  { "lambdalisue/gina.vim", lazy = true, cmd = "Gina" },
   {
     "pwntester/octo.nvim",
     lazy = true,
@@ -242,6 +243,8 @@ local plugins = {
   -- Indentation guides {{{
   {
     "lukas-reineke/indent-blankline.nvim",
+    lazy = true,
+    event = "BufRead",
     config = get_plugin_config("indent-blankline"),
   },
   -- }}}
@@ -380,7 +383,7 @@ local plugins = {
   },
   --}}}
   -- Per project marks {{{
-  { "ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim" } },
+  { "ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim" }, lazy = true },
   --}}}
   -- Vim Rest Console {{{
   { "diepm/vim-rest-console" },
@@ -410,6 +413,8 @@ local plugins = {
   -- Tabline {{{
   {
     "alvarosevilla95/luatab.nvim",
+    lazy = true,
+    event = "TabNew",
     config = get_plugin_config("luatab"),
     dependencies = { "kyazdani42/nvim-web-devicons" },
   },
@@ -478,15 +483,13 @@ local plugins = {
   -- Pandoc integration {{{
   {
     "aspeddro/pandoc.nvim",
+    lazy = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "jbyuki/nabla.nvim", -- Optional. See Extra Features
     },
     config = get_plugin_config("pandoc"),
   },
-  -- }}}
-  -- Registers {{{
-  { "tversteeg/registers.nvim" },
   -- }}}
   -- Repeat {{{
   { "tpope/vim-repeat" },
@@ -526,6 +529,8 @@ local plugins = {
   {
     "folke/zen-mode.nvim",
     config = get_plugin_config("zen-mode"),
+    lazy = true,
+    cmd = "ZenMode",
   },
   --}}}
 }
