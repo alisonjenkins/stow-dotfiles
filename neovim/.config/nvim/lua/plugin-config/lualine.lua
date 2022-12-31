@@ -1,5 +1,8 @@
-local lualine = require("lualine")
-local gps = require("nvim-gps")
+local ok, lualine = pcall(require, "lualine")
+
+if not ok then
+  return
+end
 
 local colors = {
   bg = "#202328",
@@ -146,11 +149,6 @@ ins_left({
     color_warn = { fg = colors.yellow },
     color_info = { fg = colors.cyan },
   },
-})
-
-ins_left({
-  gps.get_location,
-  cond = gps.is_available,
 })
 
 ins_left({

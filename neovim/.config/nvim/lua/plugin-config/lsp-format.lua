@@ -1,7 +1,13 @@
-require("lsp-format").setup {
-  -- typescript = { tab_width = 4 },
-  -- yaml = { tab_width = 2 },
-}
+local ok, lspformat = pcall(require, "lsp-format")
+
+if not ok then
+	return
+end
+
+lspformat.setup({
+	-- typescript = { tab_width = 4 },
+	-- yaml = { tab_width = 2 },
+})
 
 -- local prettier = {
 --     formatCommand = [[prettier --stdin-filepath ${INPUT} ${--tab-width:tab_width}]],

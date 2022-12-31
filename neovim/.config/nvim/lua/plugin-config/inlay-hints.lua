@@ -1,7 +1,12 @@
-require("inlay-hints").setup({
-  only_current_line = true,
+local ok, inlay = pcall(require, "inlay-hints")
+if not ok then
+	return
+end
 
-  eol = {
-    right_align = true,
-  }
+inlay.setup({
+	only_current_line = true,
+
+	eol = {
+		right_align = true,
+	},
 })

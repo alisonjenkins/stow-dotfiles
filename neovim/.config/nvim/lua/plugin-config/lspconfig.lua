@@ -2,10 +2,24 @@
 
 local neodev_ok, neodev = pcall(require, "neodev")
 if neodev_ok then
-  neodev.setup({})
+  neodev.setup({
+    library = {
+      enabled = true,
+      runtime = true,
+      types = true,
+      plugins = true,
+    },
+    setup_jsonls = true,
+    lspconfig = true,
+  })
 end
 
 local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+
+if not lspconfig_ok then
+  return
+end
+
 local lsp_defaults = lspconfig.util.default_config
 
 if not lspconfig_ok then

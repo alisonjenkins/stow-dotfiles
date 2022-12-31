@@ -37,15 +37,3 @@ vim.o.undofile = true -- enable persistent undo (meaning if you quit Neovim and 
 vim.o.updatetime = 300 -- Faster completion
 vim.o.wrap = false -- Display long lines as just one line
 vim.o.writebackup = true -- enable writing of backup files when saving changes.
-
-vim.cmd([[
-let g:loaded_perl_provider=0           " Disable Perl provider in Neovim
-" set colorcolumn=99999                  " fix indentline for now
-
-try
-colorscheme kanagawa
-catch
-colorscheme desert
-endtry
-
-]])

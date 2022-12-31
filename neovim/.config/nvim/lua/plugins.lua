@@ -1,90 +1,78 @@
 -- vim: set foldmethod=marker foldlevel=0:
-local packer_installed, packer = pcall(require, "packer")
-local use = packer.use
-local is_bootstrap = false
-
-local function bootstrap_packer() --{{{
-  local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd("packadd packer.nvim")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", lazypath })
+    vim.fn.system({ "git", "-C", lazypath, "checkout", "tags/stable" }) -- last stable release
   end
-end --}}}
+end
+vim.opt.rtp:prepend(lazypath)
 
 local function get_plugin_config(name) --{{{
-  return string.format('require("plugin-config/%s")', name)
-end --}}}
-
-local function run_plugin_config(name) --{{{
-  local file = loadfile(string.format("plugin-config/%s"), name)
-  if file ~= nil then
-    file()
+  return function()
+    require(string.format("plugin-config/%s", name))
   end
+
+  -- local file = loadfile(string.format("plugin-config/%s", name))
+  -- if file ~= nil then
+  --   return file
+  -- end
+  -- return nil
 end --}}}
 
-if not packer_installed then --{{{
-  is_bootstrap = true
-  bootstrap_packer()
-  _, packer = pcall(require, "packer")
-end --}}}
-
-packer.init({ --{{{
-  display = {
-    open_cmd = "leftabove 80vnew [packer]",
-    header_sym = "─",
-  },
-  profile = {
-    enable = true,
-    threshold = 1,
-  },
-}) --}}}
-
-packer.startup(function()
-  -- Packer self update {{{
-  use({ "wbthomason/packer.nvim" }) --}}}
+local plugins = {
   -- Lua caching {{{
-  use({ "lewis6991/impatient.nvim" }) --}}}
+  -- { "lewis6991/impatient.nvim" },
+  -- }}}
   -- {{{ Neural AI completion
-  use({
-    "dense-analysis/neural",
-    config = get_plugin_config("neural"),
-    requires = {
-      "MunifTanjim/nui.nvim",
-      "ElPiloto/significant.nvim",
-    },
-    rocks = { "lua-cjson" },
-  })
+  -- {
+  --   "dense-analysis/neural",
+  --   config = get_plugin_config("neural"),
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --     "ElPiloto/significant.nvim",
+  --   },
+  --   rocks = { "lua-cjson" },
+  -- },
   -- }}}
   -- Add restoration of last location in files {{{
-  use({
+  {
     "ethanholz/nvim-lastplace",
     config = get_plugin_config("lastplace"),
-  }) --}}}
+  },
+  --}}}
   -- Alignment {{{
   -- TODO: Configure the mappings for this plugin.
-  use({
-    "junegunn/vim-easy-align",
-  }) --}}}
-  -- Ansi Colour Codes {{{
-  use({
-    "powerman/vim-plugin-AnsiEsc",
-  })
+  { "junegunn/vim-easy-align" },
+  --}}}
+  -- Key mapping {{{
+  {
+    "folke/which-key.nvim",
+    lazy = false,
+    config = get_plugin_config("which-key"),
+  },
+  --}}}
+  -- Center Align code {{{
+  { "shortcuts/no-neck-pain.nvim", version = "*", lazy = true, cmd = "NoNeckPain" },
   -- }}}
   -- Colour schemes {{{
-  use({ "folke/tokyonight.nvim", config = get_plugin_config("tokyonight") })
-  use({ "rebelot/kanagawa.nvim", config = get_plugin_config("kanagawa") })
-  use({ "sainnhe/everforest", config = get_plugin_config("everforest") })
-  --}}}
+  { "rebelot/kanagawa.nvim", lazy = false, priority = 1000, config = get_plugin_config("kanagawa") },
+  { "folke/tokyonight.nvim", config = get_plugin_config("tokyonight") },
+  { "sainnhe/everforest", config = get_plugin_config("everforest") },
+  -- }}}
   -- Commenting {{{
-  use({ "numToStr/Comment.nvim", config = get_plugin_config("comment") }) --}}}
+  { "numToStr/Comment.nvim", config = get_plugin_config("comment"), lazy = false },
+  --}}}
   -- Completion {{{
-  use({
+  {
     "hrsh7th/nvim-cmp",
     config = get_plugin_config("cmp"),
-    requires = {
+    lazy = true,
+    event = "InsertEnter",
+    dependencies = {
       {
         "L3MON4D3/LuaSnip",
-        requires = {
+        dependencies = {
           "rafamadriz/friendly-snippets",
         },
         config = get_plugin_config("luasnip"),
@@ -101,41 +89,54 @@ packer.startup(function()
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      { "tzachar/cmp-tabnine", run = "./install.sh", config = get_plugin_config("tabnine") },
-      { "romgrk/fzy-lua-native", run = "make" },
-      { "tzachar/cmp-fuzzy-buffer", requires = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
+      { "tzachar/cmp-tabnine", build = "./install.sh", config = get_plugin_config("tabnine") },
+      { "romgrk/fzy-lua-native", build = "make" },
+      { "tzachar/cmp-fuzzy-buffer", dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
     },
-  }) -- }}}
-  -- Colorizer (Colour previews for things that define colours in code) {{{
-  use({
+  },
+  -- }}}
+  -- Startup Dashboard {{{
+  {
+    "goolord/alpha-nvim",
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+    lazy = false,
+    priority = 1001,
+    config = get_plugin_config("alpha"),
+  },
+  -- }}}
+  -- Neovim startup profiler {{{
+  { "dstein64/vim-startuptime", cmd = "StartupTime" },
+  -- }}}
+  -- Tmux integration {{{
+  {
+    "aserowy/tmux.nvim",
+    lazy = true,
+    config = get_plugin_config("tmux"),
+  },
+  -- }}}
+  -- Coloizer {{{
+  {
     "norcalli/nvim-colorizer.lua",
     event = "BufReadPre",
     config = get_plugin_config("colorizer"),
-  }) --}}}
+  },
+  -- }}}
   -- Detect indent {{{
-  use({ "tpope/vim-sleuth" })
+  { "tpope/vim-sleuth" },
   -- }}}
   -- Faster filetypes plugin {{{
-  use({ "nathom/filetype.nvim" })
+  { "nathom/filetype.nvim" },
   -- }}}
   -- File manager {{{
-  use({ "justinmk/vim-dirvish" }) --}}}
-  -- Fold previews {{{
-  use({
-    "anuvyklack/fold-preview.nvim",
-    requires = "anuvyklack/keymap-amend.nvim",
-    config = get_plugin_config("fold-preview"),
-  })
-  -- }}}
-  -- Folding improvements {{{
-  use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async", config = get_plugin_config("nvim-ufo") })
-  -- }}}
+  { "justinmk/vim-dirvish" },
+  --}}}
   -- Fuzzy finding {{{
-  use({
+  {
     "nvim-telescope/telescope.nvim",
     config = get_plugin_config("telescope"),
-    wants = "nvim-web-devicons",
-    requires = {
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
       "ThePrimeagen/git-worktree.nvim",
       "ahmedkhalf/project.nvim",
       "crispgm/telescope-heading.nvim",
@@ -147,19 +148,19 @@ packer.startup(function()
       "nvim-telescope/telescope-github.nvim",
       "nvim-telescope/telescope-packer.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
-      { "nvim-telescope/telescope-fzy-native.nvim", requires = { "romgrk/fzy-lua-native" } },
-      { "kyazdani42/nvim-web-devicons", opt = true },
+      { "nvim-telescope/telescope-fzy-native.nvim", dependencies = { "romgrk/fzy-lua-native" } },
+      { "kyazdani42/nvim-web-devicons" },
     },
-  })
-  use({
+  },
+  {
     "junegunn/fzf",
-    run = function()
+    build = function()
       vim.fn["fzf#install"]()
     end,
-  })
+  },
   --}}}
   -- Github Copilot {{{
-  -- use({
+  -- {
   --   "zbirenbaum/copilot.lua",
   --   event = { "VimEnter" },
   --   config = function()
@@ -167,12 +168,14 @@ packer.startup(function()
   --       require("copilot").setup()
   --     end, 100)
   --   end,
-  -- })
+  -- },
   -- }}}
   -- Git integration {{{
-  use({
+  {
     "tpope/vim-fugitive",
-    requires = {
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
       -- (vimscript) Plugin improve the git commit interface showing diffs to remind you want you are changing.
       "rhysd/committia.vim",
       -- (vimscript) Adds Fugitive Gbrowse support for Gitlab repos.,
@@ -182,71 +185,61 @@ packer.startup(function()
       -- (vimscript) Adds Fugitive Gbrowse support for GitHub repos.
       "tpope/vim-rhubarb",
     },
-  })
-  use({
+  },
+  {
     "mattn/gist-vim",
-    wants = "webapi-vim",
-    requires = { "mattn/webapi-vim", opt = true },
+    dependencies = { "mattn/webapi-vim" },
+    lazy = true,
     cmd = "Gist",
     config = get_plugin_config("gist"),
-  })
-  use({
+  },
+  {
     "rhysd/git-messenger.vim",
     cmd = "GitMessenger",
-  })
-  use({
+  },
+  {
     "f-person/git-blame.nvim",
+    lazy = true,
+    event = "VeryLazy",
     config = get_plugin_config("git-blame"),
-  })
-  -- use({
+  },
+  -- {
   --   "lewis6991/gitsigns.nvim",
   --   config = get_plugin_config("gitsigns"),
-  -- })
-  use({ "lambdalisue/gina.vim" })
-  use({
+  -- },
+  { "lambdalisue/gina.vim" },
+  {
     "pwntester/octo.nvim",
-    requires = {
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim",
       "kyazdani42/nvim-web-devicons",
     },
     config = get_plugin_config("octo"),
-  })
+  },
   --}}}
   -- Grammar checking {{{
-  use({ "rhysd/vim-grammarous", cmd = "GrammarousCheck" })
+  { "rhysd/vim-grammarous", cmd = "GrammarousCheck" },
   --}}}
-  -- GPS for statusline (to tell where you are in large structures) {{{
-  use({
-    "SmiteshP/nvim-gps",
-    config = get_plugin_config("gps"),
-    requires = "nvim-treesitter/nvim-treesitter",
-  }) --}}}
   -- Highlight of use {{{
-  use({ "RRethy/vim-illuminate", event = "CursorHold" }) --}}}
+  { "RRethy/vim-illuminate", event = "CursorHold" },
+  --}}}
   -- Indentation guides {{{
-  use({
+  {
     "lukas-reineke/indent-blankline.nvim",
     config = get_plugin_config("indent-blankline"),
-  })
+  },
   -- }}}
   -- Inlay Hints {{{
-  use({
+  {
     "simrat39/inlay-hints.nvim",
     config = get_plugin_config("inlay-hints"),
-  })
+  },
   -- }}}
-  -- Key mapping {{{
-  use({
-    "folke/which-key.nvim",
-    requires = {
-      "aserowy/tmux.nvim",
-    },
-    event = "VimEnter",
-    config = get_plugin_config("which-key"),
-  }) --}}}
   -- Language servers + LSP tools {{{
-  use({
+  {
     "mfussenegger/nvim-dap",
     config = function()
       local dap = require("dap")
@@ -280,236 +273,236 @@ packer.startup(function()
         },
       }
     end,
-  })
-  use({
+  },
+  {
     "neovim/nvim-lspconfig",
-    requires = {
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
       "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
       "folke/neodev.nvim",
-      "hrsh7th/nvim-cmp",
+      -- "hrsh7th/nvim-cmp",
       "onsails/lspkind-nvim",
       "ray-x/lsp_signature.nvim",
       "simrat39/inlay-hints.nvim",
-      {
-        "ray-x/go.nvim",
-        config = get_plugin_config("go"),
-        requires = {
-          "ray-x/guihua.lua",
-          "rcarriga/nvim-dap-ui",
-          "theHamsta/nvim-dap-virtual-text",
-        },
-      },
-      { "https://git.sr.ht/~whynothugo/lsp_lines.nvim", config = get_plugin_config("lsp_lines") },
+      { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async", config = get_plugin_config("nvim-ufo") },
+      { url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim", config = get_plugin_config("lsp_lines") },
       { "rmagatti/goto-preview", config = get_plugin_config("goto-preview") },
       { "glepnir/lspsaga.nvim", config = get_plugin_config("lspsaga") },
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = get_plugin_config("null-ls"),
-        requires = { "nvim-lua/plenary.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim" },
       },
       { "williamboman/mason.nvim", config = get_plugin_config("mason") },
-      { "williamboman/mason-lspconfig.nvim", config = get_plugin_config("mason-lspconfig") },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        config = get_plugin_config("mason-lspconfig"),
+        dependencies = "williamboman/mason.nvim",
+      },
       { "lukas-reineke/lsp-format.nvim", config = get_plugin_config("lsp-format") },
     },
     config = get_plugin_config("lspconfig"),
-  })
-  use({
+  },
+  {
     "folke/lsp-trouble.nvim",
-    wants = { "nvim-web-devicons", "nvim-lspconfig" },
-    requires = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "kyazdani42/nvim-web-devicons", "nvim-lspconfig" },
     config = get_plugin_config("trouble"),
-  })
-  use({
+    cmd = {
+      "Trouble",
+      "TroubleClose",
+      "TroubleRefresh",
+      "TroubleToggle",
+    },
+    lazy = true,
+  },
+  {
     "j-hui/fidget.nvim",
     config = get_plugin_config("fidget"),
-  })
+  },
+  {
+    "ray-x/go.nvim",
+    config = get_plugin_config("go"),
+    ft = "go",
+    dependencies = {
+      "ray-x/guihua.lua",
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "williamboman/mason-lspconfig.nvim",
+    },
+  },
   --}}}
   -- Markdown previews{{{
-  use({
+  {
     "iamcco/markdown-preview.nvim",
-    run = function()
+    build = function()
       vim.fn["mkdp#util#install"]()
     end,
     ft = { "markdown" },
     config = get_plugin_config("markdown-preview"),
-  }) --}}}
+  },
+  --}}}
   -- Mini modules {{{
-  use({
+  {
     "echasnovski/mini.nvim",
     config = get_plugin_config("mini"),
-  })
+  },
   -- }}}
   -- Neorg (Neovim Org mode) {{{
-  use({
+  {
     "nvim-neorg/neorg",
-    run = ":Neorg sync-parsers",
+    build = ":Neorg sync-parsers",
+    lazy = true,
+    ft = "norg",
     config = get_plugin_config("neorg"),
-    requires = "nvim-lua/plenary.nvim",
-  })
+    dependencies = "nvim-lua/plenary.nvim",
+  },
   -- }}}
   -- nvim-dev-webicons {{{
-  use({
+  {
     "kyazdani42/nvim-web-devicons",
     config = get_plugin_config("nvim-web-devicons"),
-  }) --}}}
+  },
+  --}}}
   -- Per project marks {{{
-  use({
-    "ThePrimeagen/harpoon",
-    requires = { "nvim-lua/plenary.nvim" },
-  }) --}}}
+  { "ThePrimeagen/harpoon", dependencies = { "nvim-lua/plenary.nvim" } },
+  --}}}
   -- Vim Rest Console {{{
-  use({
-    "diepm/vim-rest-console",
-  })
+  { "diepm/vim-rest-console" },
   -- }}}
   -- Per split buffer names {{{
-  use({ "b0o/incline.nvim", config = get_plugin_config("incline") })
+  { "b0o/incline.nvim", config = get_plugin_config("incline") },
   -- }}}
   -- Search index overlay {{{
-  use({
+  {
     "kevinhwang91/nvim-hlslens",
+    lazy = true,
+    keys = { "/", "?" },
     config = get_plugin_config("nvim-hlslens"),
-    requires = { "nvim-lua/plenary.nvim" },
-  })
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
   -- }}}
   -- Smooth scrolling {{{
-  use({
+  {
     "karb94/neoscroll.nvim",
     keys = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-e>", "zt", "zz", "zb" },
     config = get_plugin_config("neoscroll"),
-  }) --}}}
+  },
+  --}}}
   -- Statusline {{{
-  use({
-    "nvim-lualine/lualine.nvim",
-    requires = {
-      "SmiteshP/nvim-gps",
-    },
-    config = get_plugin_config("lualine"),
-  }) --}}}
+  { "nvim-lualine/lualine.nvim", config = get_plugin_config("lualine") },
+  --}}}
   -- Tabline {{{
-  use({
+  {
     "alvarosevilla95/luatab.nvim",
     config = get_plugin_config("luatab"),
-    requires = { "kyazdani42/nvim-web-devicons" },
-  })
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+  },
   -- }}}
   -- Terraform Plugins {{{
-  use({
-    "hashivim/vim-terraform",
-    config = get_plugin_config("terraform"),
-    requires = "godlygeek/tabular",
-  })
-  use({
-    "alanjjenkins/vim-terraform-completion",
-    config = get_plugin_config("terraform-completion"),
-  })
+  { "hashivim/vim-terraform", config = get_plugin_config("terraform") },
+  { "alanjjenkins/vim-terraform-completion", config = get_plugin_config("terraform-completion") },
   -- }}}
   -- Todo comments {{{
-  use({
+  {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = "nvim-lua/plenary.nvim",
     config = get_plugin_config("todo-comments"),
-  }) --}}}
+  },
+  --}}}
   -- Treesitter + Addons {{{
-  use({
+  {
     "nvim-treesitter/nvim-treesitter",
     config = get_plugin_config("treesitter"),
-    run = ":TSUpdate",
-    requires = {
+    build = ":TSUpdate",
+    lazy = true,
+    event = "VeryLazy",
+    dependencies = {
       -- { "nvim-treesitter/nvim-treesitter-textobjects" },
       {
         "m-demare/hlargs.nvim",
         config = get_plugin_config("hlargs"),
-        requires = { "nvim-treesitter/nvim-treesitter" },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
       },
-      { "p00f/nvim-ts-rainbow", opt = true },
+      { "p00f/nvim-ts-rainbow" },
     },
-    wants = {
-      "nvim-ts-rainbow",
-    },
-  })
-  use({ "nvim-treesitter/nvim-treesitter-context", config = get_plugin_config("nvim-treesitter-context") })
-  use({ "nvim-treesitter/playground" })
-  -- use({ "nvim-treesitter/nvim-treesitter-textobjects", config = get_plugin_config("nvim-treesitter-textobjects") })
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    lazy = true,
+    event = "VeryLazy",
+    config = get_plugin_config("nvim-treesitter-context"),
+    dependencies = "nvim-treesitter/nvim-treesitter",
+  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter-textobjects",
+  --   config = get_plugin_config("nvim-treesitter-textobjects"),
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  -- },
+  { "nvim-treesitter/playground", lazy = true, cmd = "TSPlaygroundToggle" },
   --}}}
   -- Twilight Highlighting (Zen mode focusing) {{{
-  use({
+  {
     "folke/twilight.nvim",
     config = get_plugin_config("twilight"),
-  })
+  },
   --}}}
   -- Pandoc integration {{{
-  use({
+  {
     "aspeddro/pandoc.nvim",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "jbyuki/nabla.nvim", -- Optional. See Extra Features
     },
     config = get_plugin_config("pandoc"),
-  })
+  },
   -- }}}
   -- Registers {{{
-  use({ "tversteeg/registers.nvim" })
+  { "tversteeg/registers.nvim" },
   -- }}}
   -- Repeat {{{
-  use({ "tpope/vim-repeat" })
+  { "tpope/vim-repeat" },
   --}}}
   -- Rust {{{
-  use({
+  {
     "simrat39/rust-tools.nvim",
-    requires = {
+    ft = "rust",
+    dependencies = {
       "simrat39/inlay-hints.nvim",
     },
     config = get_plugin_config("rust-tools"),
-  })
-  use({
+  },
+  {
     "saecki/crates.nvim",
     event = { "BufRead Cargo.toml" },
-    requires = { { "nvim-lua/plenary.nvim" } },
+    dependencies = { { "nvim-lua/plenary.nvim" } },
     config = get_plugin_config("crates"),
-  })
+  },
   --}}}
-  -- Startup Dashboard {{{
-  use({
-    "goolord/alpha-nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
-    wants = "nvim-web-devicons",
-    config = function()
-      require("alpha").setup(require("alpha.themes.startify").opts)
-    end,
-  }) --}}}
   -- Speeddating (Allows incrementing and decrementing of dates) {{{
-  use({
-    "tpope/vim-speeddating",
-  }) --}}}
-  -- Tmux integration {{{
-  use({
-    "aserowy/tmux.nvim",
-    config = get_plugin_config("tmux"),
-  }) --}}}
+  { "tpope/vim-speeddating", lazy = true, event = "BufEnter" },
+  --}}}
   -- Syntax files {{{
-  use({ "sheerun/vim-polyglot" })
+  -- { "sheerun/vim-polyglot" },
   -- }}}
   -- Unimpaired shortcuts {{{
-  use({ "tpope/vim-unimpaired" }) --}}}
+  { "tpope/vim-unimpaired" },
+  --}}}
   -- Trailing Whitespace {{{
-  -- use({
+  -- {
   --   "zakharykaplan/nvim-retrail",
   --   config = get_plugin_config("retrail"),
-  -- })
+  -- },
   -- }}}
   -- Zen mode {{{
-  use({
+  {
     "folke/zen-mode.nvim",
     config = get_plugin_config("zen-mode"),
-  }) --}}}
+  },
+  --}}}
+}
 
-  if is_bootstrap then
-    require("packer").sync()
-  end
-
-  -- TODO: Configure Packer's compiled code to be cached by Lua cache
-  -- TODO: Setup more lazy loading for packer
-  -- TODO: Consider switching from Lightspeed to hop or get rid of both...
-  -- TODO: Setup Java plugin
-end)
+local opts = {}
+require("lazy").setup(plugins, opts)
