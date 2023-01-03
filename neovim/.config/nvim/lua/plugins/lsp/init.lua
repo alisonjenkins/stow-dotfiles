@@ -24,7 +24,7 @@ function M.config()
 	local function on_attach(client, bufnr)
 		require("nvim-navic").attach(client, bufnr)
 		require("plugins.lsp.formatting").setup(client, bufnr)
-		require("plugins.lsp.keys").setup(client, bufnr)
+		-- require("plugins.lsp.keys").setup(client, bufnr)
 	end
 
 	---@type lspconfig.options
