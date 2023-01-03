@@ -1,9 +1,4 @@
--- Caching
--- local hasimpatient, impatient = pcall(require, "impatient")
--- if hasimpatient then
-  -- impatient.enable_profile()
--- end
-
-require "plugins"
-require "options"
-require "autocmd"
+-- require("plugins1")
+require("config.options")
+require("config.lazy")
+require("config.autocmd")
