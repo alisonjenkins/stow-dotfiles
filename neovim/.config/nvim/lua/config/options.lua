@@ -3,6 +3,7 @@ vim.loop.fs_mkdir(vim.o.backupdir, 750)
 vim.loop.fs_mkdir(vim.o.directory, 750)
 vim.loop.fs_mkdir(vim.o.undodir, 750)
 
+vim.g.did_load_filetypes = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.o.backup = true -- enable backups so if Neovim crashes or you lose power you do not lose your work.
