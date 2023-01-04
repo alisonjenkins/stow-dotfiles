@@ -66,6 +66,7 @@ function M.config()
 				},
 			},
 		},
+		terraformls = {},
 		yamlls = {},
 		sumneko_lua = {
 			-- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
