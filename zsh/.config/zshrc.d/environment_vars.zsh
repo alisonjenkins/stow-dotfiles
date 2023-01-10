@@ -29,6 +29,10 @@ export MCFLY_RESULTS=50
 # starting with a space.
 export HISTCONTROL=ignoredups:ignorespace
 
+if [ -f ~/.secret_envvars ]; then
+  source ~/.secret_envvars
+fi
+
 # On Mac have Homebrew Cask install applications to your user's Applications
 # directory
 if uname -a | grep 'Darwin' &> /dev/null; then
