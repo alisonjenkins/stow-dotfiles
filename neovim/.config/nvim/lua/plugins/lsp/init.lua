@@ -25,6 +25,11 @@ function M.config()
 		require("nvim-navic").attach(client, bufnr)
 		require("plugins.lsp.formatting").setup(client, bufnr)
 		-- require("plugins.lsp.keys").setup(client, bufnr)
+
+		-- Disable diagnostics for helm charts
+		if vim.bo[bufnr].buftype ~= "" or vim.bo[bufnr].filetype == "helm" then
+			vim.diagnostic.disable()
+		end
 	end
 
 	---@type lspconfig.options
@@ -67,7 +72,15 @@ function M.config()
 			},
 		},
 		terraformls = {},
-		yamlls = {},
+		yamlls = {
+			schemas = {
+				["https://json.schemastore.org/chart.json"] = {
+					"/deployment/helm/*",
+					"/charts/*",
+				},
+				["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+			},
+		},
 		sumneko_lua = {
 			-- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
 			single_file_support = true,
