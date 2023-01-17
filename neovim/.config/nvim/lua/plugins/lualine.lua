@@ -177,6 +177,8 @@ function M.config()
 		color = { fg = "#ffffff", gui = "bold" },
 	})
 
+	ins_left(require("pomodoro").statusline)
+
 	-- ins_right({
 	--   "o:encoding", -- option component same as &encoding in viml
 	--   fmt = string.upper, -- I'm not sure why it's upper case either ;)

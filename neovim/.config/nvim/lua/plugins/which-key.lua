@@ -349,6 +349,15 @@ function M.config()
 			f = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "Open mark 4" },
 			M = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Toggle marks menu" },
 		}, --}}}
+
+		-- p is for Pomodoro {{{
+		p = {
+			name = "+pomodoro",
+			p = { "<cmd>PomodoroStart<cr>", "Pomodoro start" },
+			s = { "<cmd>PomodoroStatus<cr>", "Pomodoro status" },
+			S = { "<cmd>PomodoroStop<cr>", "Pomodoro stop" },
+		},
+		-- }}}
 	}, { prefix = "<leader>" })
 end
 
