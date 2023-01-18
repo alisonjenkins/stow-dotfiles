@@ -68,11 +68,11 @@ function M.config()
 	vim.api.nvim_set_keymap("n", "gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>", { silent = true })
 	-- }}}
 
-	-- better window movement with Tmux integration {{{
-	vim.api.nvim_set_keymap("n", "<C-h>", "<cmd>lua require('tmux').move_left()<cr>", { silent = true })
-	vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>lua require('tmux').move_bottom()<cr>", { silent = true })
-	vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>lua require('tmux').move_top()<cr>", { silent = true })
-	vim.api.nvim_set_keymap("n", "<C-l>", "<cmd>lua require('tmux').move_right()<cr>", { silent = true })
+	-- better window movement with terminal multiplexers {{{
+	vim.api.nvim_set_keymap("n", "<C-h>", "<cmd>NavigatorLeft<cr>", { silent = true })
+	vim.api.nvim_set_keymap("n", "<C-j>", "<cmd>NavigatorDown<cr>", { silent = true })
+	vim.api.nvim_set_keymap("n", "<C-k>", "<cmd>NavigatorUp<cr>", { silent = true })
+	vim.api.nvim_set_keymap("n", "<C-l>", "<cmd>NavigatorRight<cr>", { silent = true })
 	--}}}
 
 	-- nvim-hlslens {{{
