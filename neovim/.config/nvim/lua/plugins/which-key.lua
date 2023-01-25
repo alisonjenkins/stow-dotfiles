@@ -54,6 +54,15 @@ function M.config()
 	vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
 	-- }}}
 
+	-- {{{ Luasnip shortcuts
+	vim.api.nvim_set_keymap(
+		"i",
+		"<Tab>",
+		[[luasnip.expand_or_jumpable() and '<Plug>luasnip-expand-or-jump' or '<Tab>']],
+		{ silent = true, expr = true }
+	)
+	-- }}}
+
 	-- Format on save and quit {{{
 	-- vim.cmd([[cabbrev wq execute "Format sync" <bar> wq]])
 	-- }}}
@@ -98,8 +107,8 @@ function M.config()
 	-- }}}
 
 	-- {{{ Nvim Keymaps
-	vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-	vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true })
+	-- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+	-- vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true })
 	-- }}}
 
 	-- Setup leader based mappings with which-key so they are documented and
@@ -168,6 +177,7 @@ function M.config()
 		b = { "<cmd>Telescope buffers<cr>", "Buffers (Telescope)" },
 		f = { "<cmd>Telescope find_files<cr>", "Find files (Telescope)" },
 		F = { "<cmd>Telescope find_files hidden=true<cr>", "Find files including hidden files (Telescope)" },
+		o = { "<cmd>Telescope smart_open<cr>", "Open files (Telescope)" },
 		-- }}}
 
 		-- s is for search powered by Telescope{{{
@@ -261,7 +271,7 @@ function M.config()
 			d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
 			f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
 			o = { "<cmd>Telescope treesitter<cr>", "Outline" },
-			p = { "<cmd>Lspsaga peek_definition<cr>", "Preview Definition" },
+			-- p = { "<cmd>Lspsaga peek_definition<cr>", "Preview Definition" },
 			q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
 			r = { "<cmd>lua RustRunnables<cr>", "Runnables" },
 			R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
