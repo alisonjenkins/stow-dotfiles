@@ -40,7 +40,7 @@ mlspconfig.setup({
 		-- "shfmt",
 		"sqls",
 		-- "stylua",
-		"sumneko_lua",
+		"lua_ls",
 		-- "terraform-ls",
 		"texlab",
 		"tflint",
