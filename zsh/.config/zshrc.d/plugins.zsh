@@ -23,9 +23,9 @@ zinit load zsh-users/zsh-completions
 
 # Install rtx version manager (replacement for asdf)
 zinit ice from"gh-r" as"command" mv"rtx* -> rtx" \
-  atclone'rtx activate -s zsh > init.zsh; ./rtx complete -s zsh > _rtx' \
-  atpull'%atclone' src"init.zsh"
+  atclone'./rtx complete -s zsh > _rtx' atpull'%atclone'
 zinit light jdxcode/rtx
+eval "$(rtx activate zsh)"
 
 # install zoxide
 zinit ice wait lucid from"gh-r" as"command" \
