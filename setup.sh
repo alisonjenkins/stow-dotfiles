@@ -51,7 +51,7 @@ if [ -f /etc/arch-release ]; then
 
   set +e
   for PACKAGE in "${PACKAGES[@]}"; do
-    if ! pacman -Qi "$PACKAGE" &> /dev/null; then
+    if ! pacman -Qi "$PACKAGE" &>/dev/null; then
       INSTALL_PACKAGES+=("$PACKAGE")
     fi
   done
@@ -59,7 +59,7 @@ if [ -f /etc/arch-release ]; then
 
   # Install paru if it is missing
   set +e
-  if ! command -v paru &> /dev/null; then
+  if ! command -v paru &>/dev/null; then
     curl https://aur.archlinux.org/cgit/aur.git/snapshot/paru.tar.gz -o - | tar xvf -C /tmp/
     cd /tmp/paru
     makepkg -si
@@ -100,7 +100,7 @@ if [ -f /etc/arch-release ]; then
   # Ensure all listed asdf plugins are installed
   for PLUGIN in "${ASDF_PLUGINS_TO_INSTALL[@]}"; do
     echo "Checking $PLUGIN"
-    if ! echo "${ASDF_PLUGINS_INSTALLED[@]}" | grep -q "$PLUGIN" &> /dev/null; then
+    if ! echo "${ASDF_PLUGINS_INSTALLED[@]}" | grep -q "$PLUGIN" &>/dev/null; then
       echo "Attempting to install plugin: $PLUGIN"
       asdf plugin add "$PLUGIN"
     fi
@@ -137,7 +137,7 @@ if [ -f /etc/arch-release ]; then
   )
 
   for PACKAGE in "${PIP_PACKAGES_TO_INSTALL[@]}"; do
-    if ! echo "${PIP_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &> /dev/null; then
+    if ! echo "${PIP_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
       pip install "$PACKAGE"
     fi
   done
@@ -152,7 +152,7 @@ if [ -f /etc/arch-release ]; then
   )
 
   for PACKAGE in "${GEM_PACKAGES_TO_INSTALL[@]}"; do
-    if ! echo "${GEM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &> /dev/null; then
+    if ! echo "${GEM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
       gem install "$PACKAGE"
     fi
   done
@@ -166,7 +166,7 @@ if [ -f /etc/arch-release ]; then
   )
 
   for PACKAGE in "${NPM_PACKAGES_TO_INSTALL[@]}"; do
-    if ! echo "${NPM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &> /dev/null; then
+    if ! echo "${NPM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
       npm install -g "$PACKAGE"
     fi
   done
