@@ -183,6 +183,7 @@ stow -t "$HOME" git
 stow -t "$HOME" latte-dock/
 stow -t "$HOME" neovim
 stow -t "$HOME" scripts
+stow -t "$HOME" starship
 stow -t "$HOME" systemd/
 stow -t "$HOME" tig/
 stow -t "$HOME" tmux
