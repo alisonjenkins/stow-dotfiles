@@ -180,7 +180,6 @@ stow -t "$HOME" alacritty
 stow -t "$HOME" bash
 stow -t "$HOME" curl/
 stow -t "$HOME" git
-stow -t "$HOME" latte-dock/
 stow -t "$HOME" neovim
 stow -t "$HOME" scripts
 stow -t "$HOME" starship
