@@ -76,3 +76,6 @@ else
     fi
   fi
 fi
+
+# Kubernetes aliases
+alias watchhr="watch 'kubectl get hr -A'"
