@@ -1,7 +1,7 @@
 # Global Config
 [user]
-  email = alan.james.jenkins@gmail.com
-  name = Alan Jenkins
+  email = alison.juliet.jenkins@gmail.com
+  name = Alison Jenkins
   #signingkey = **Your GPG ID**
 
 [branch]
