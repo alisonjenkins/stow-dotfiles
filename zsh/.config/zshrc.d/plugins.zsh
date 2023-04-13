@@ -10,7 +10,10 @@ source ~/.local/share/zinit/bin/zinit.zsh
 
 export _ZL_MATCH_MODE=1
 
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+zinit ice from"gh-r" as"program" atclone"./starship init zsh > init.zsh" atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
 # Plugins
 zinit load Aloxaf/fzf-tab
