@@ -2,18 +2,7 @@ local M = {
 	"williamboman/mason.nvim",
 }
 
-M.tools = {
-	"blackd-client",
-	"eslint_d",
-	"flake8",
-	"isort",
-	"luacheck",
-	"prettierd",
-	"selene",
-	"shellcheck",
-	"shfmt",
-	"stylua",
-}
+M.tools = {}
 
 function M.check()
 	local mr = require("mason-registry")
