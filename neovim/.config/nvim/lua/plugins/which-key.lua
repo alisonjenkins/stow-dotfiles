@@ -55,12 +55,12 @@ function M.config()
 	-- }}}
 
 	-- {{{ Luasnip shortcuts
-	vim.api.nvim_set_keymap(
-		"i",
-		"<Tab>",
-		[[luasnip.expand_or_jumpable() and '<Plug>luasnip-expand-or-jump' or '<Tab>']],
-		{ silent = true, expr = true }
-	)
+	-- vim.api.nvim_set_keymap(
+	-- 	"i",
+	-- 	"<Tab>",
+	-- 	[[luasnip.expand_or_jumpable() and '<Plug>luasnip-expand-or-jump' or '<Tab>']],
+	-- 	{ silent = true, expr = true }
+	-- )
 	-- }}}
 
 	-- Format on save and quit {{{
@@ -91,6 +91,7 @@ function M.config()
 	-- terminal mappings {{{
 	vim.api.nvim_set_keymap("t", "<M-[>", "<C_\\><C-n>", { silent = true })
 	-- }}}
+
 	-- nvim-hlslens {{{
 	local kopts = { noremap = true, silent = true }
 
