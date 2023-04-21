@@ -21,6 +21,13 @@ dap.configurations.rust = {
 		name = "Launch file",
 		type = "codelldb",
 		request = "launch",
+		env = function()
+			local variables = {}
+			for k, v in pairs(vim.fn.environ()) do
+				table.insert(variables, string.format("%s=%s", k, v))
+			end
+			return variables
+		end,
 		program = function()
 			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
 		end,
