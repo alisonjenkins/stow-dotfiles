@@ -40,6 +40,8 @@ local M = {
 		{ "tzachar/cmp-tabnine", build = "./install.sh" },
 		{ "romgrk/fzy-lua-native", build = "make" },
 		{ "tzachar/cmp-fuzzy-buffer", dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
+		{ "jcdickinson/codeium.nvim", config = true },
+		{ "jcdickinson/http.nvim", build = "cargo build --workspace --release" },
 	},
 }
 
@@ -55,6 +57,7 @@ function M.config()
 		nvim_lsp = "[LSP]",
 		cmp_tabnine = "[TN]",
 		buffer = "[BUF]",
+		codium = "[CO]",
 		nvim_lua = "[LUA]",
 		path = "[PATH]",
 	}
@@ -75,26 +78,26 @@ function M.config()
 			ghost_text = true,
 		},
 		formatting = {
-			format = function(entry, vim_item)
-				vim_item.kind = lspkind.presets.default[vim_item.kind]
+			format = function(entry, item)
+				item.kind = lspkind.presets.default[item.kind]
 				local menu = source_mapping[entry.source.name]
 
 				if entry.source.name == "copilot" then
-					vim_item.kind = "[] Copilot"
-					vim_item.kind_hl_group = "CmpItemKindCopilot"
-					return vim_item
-				end
-
-				if entry.source.name == "cmp_tabnine" then
+					item.kind = "[] Copilot"
+					item.kind_hl_group = "CmpItemKindCopilot"
+					return item
+				elseif entry.source.name == "cmp_tabnine" then
 					if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
 						menu = entry.completion_item.data.detail .. " " .. menu
 					end
-					vim_item.kind = ""
-					vim_item.kind_hl_group = "CmpItemKindTabnine"
+					item.kind = ""
+					item.kind_hl_group = "CmpItemKindTabnine"
+				elseif entry.source.name == "codeium" then
+					item.kind = "^"
 				end
 
-				vim_item.menu = menu
-				return vim_item
+				item.menu = menu
+				return item
 			end,
 		},
 		mapping = {
