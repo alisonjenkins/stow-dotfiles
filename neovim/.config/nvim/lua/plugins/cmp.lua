@@ -63,20 +63,25 @@ function M.config()
 	}
 
 	cmp.setup({
+
 		completion = {
 			border = "rounded",
 			winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
 		},
+
 		confirm_opts = {
 			border = "rounded",
 			select = false,
 		},
+
 		window = {
 			documentation = cmp.config.window.bordered(),
 		},
+
 		experimental = {
 			ghost_text = true,
 		},
+
 		formatting = {
 			format = function(entry, item)
 				item.kind = lspkind.presets.default[item.kind]
@@ -156,6 +161,7 @@ function M.config()
 				priority = 4,
 			},
 		},
+
 		sorting = {
 			priority_weight = 1,
 			comparators = {
