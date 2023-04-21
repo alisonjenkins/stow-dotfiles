@@ -132,20 +132,21 @@ function M.config()
 		},
 
 		sources = {
+			{ name = "codeium", group_index = 1 },
 			{ name = "copilot", priority = 8 },
+			{ name = "cmp_tabnine", priority = 8 },
+			{ name = "luasnip", priority = 7 },
+			{ name = "nvim_lsp", priority = 7 },
+			{ name = "nvim_lsp_signature_help", priority = 7 },
 			-- { name = "cmp_pandoc",  },
 			-- { name = "cmdline" },
 			{ name = "crates" },
 			-- { name = "orgmode" },
-			{ name = "cmp_tabnine", priority = 8 },
-			{ name = "nvim_lsp", priority = 8 },
-			{ name = "nvim_lsp_signature_help", priority = 8 },
-			{ name = "buffer", priority = 7 },
-			{ name = "luasnip", priority = 7 },
+			-- { name = "buffer", priority = 6 },
 			{ name = "nvim_lua", priority = 5 },
-			{ name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
+			-- { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
 			{ name = "path", keyword_length = 5 },
-			{ name = "fuzzy_buffer", priority = 4 },
+			-- { name = "fuzzy_buffer", priority = 4 },
 			{
 				name = "tmux",
 				option = {
