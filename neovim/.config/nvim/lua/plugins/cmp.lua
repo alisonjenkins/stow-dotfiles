@@ -37,7 +37,7 @@ local M = {
 		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-nvim-lsp-signature-help",
 		"hrsh7th/cmp-nvim-lsp-document-symbol",
-		{ "tzachar/cmp-tabnine" },
+		{ "tzachar/cmp-tabnine", build = "./install.sh" },
 		{ "romgrk/fzy-lua-native", build = "make" },
 		{ "tzachar/cmp-fuzzy-buffer", dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
 	},
