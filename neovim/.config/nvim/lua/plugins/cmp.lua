@@ -54,10 +54,10 @@ function M.config()
 	local lspkind = require("lspkind")
 
 	local source_mapping = {
-		nvim_lsp = "[LSP]",
-		cmp_tabnine = "[TN]",
 		buffer = "[BUF]",
+		cmp_tabnine = "[TN]",
 		codium = "[CO]",
+		nvim_lsp = "[LSP]",
 		nvim_lua = "[LUA]",
 		path = "[PATH]",
 	}
