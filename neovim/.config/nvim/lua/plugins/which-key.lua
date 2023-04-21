@@ -84,6 +84,9 @@ function M.config()
 	vim.api.nvim_set_keymap("n", "<C-l>", "<cmd>NavigatorRight<cr>", { silent = true })
 	--}}}
 
+	-- terminal mappings {{{
+	vim.api.nvim_set_keymap("t", "<M-[>", "<C_\\><C-n>", { silent = true })
+	-- }}}
 	-- nvim-hlslens {{{
 	local kopts = { noremap = true, silent = true }
 
