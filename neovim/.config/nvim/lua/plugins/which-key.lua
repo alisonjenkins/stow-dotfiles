@@ -375,6 +375,14 @@ function M.config()
 			s = { "<cmd>PomodoroStatus<cr>", "Pomodoro status" },
 			S = { "<cmd>PomodoroStop<cr>", "Pomodoro stop" },
 		},
+		u = {
+			name = "+utils",
+			b = {
+				name = "+base64",
+				e = { "<cmd>lua require('b64').encode()<cr>", "Encode" },
+				d = { "<cmd>lua require('b64').decode()<cr>", "Decode" },
+			},
+		},
 		-- }}}
 	}, { prefix = "<leader>" })
 end
