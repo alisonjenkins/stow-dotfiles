@@ -13,13 +13,14 @@ return {
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "L3MON4D3/LuaSnip" },
+    { "lukas-reineke/lsp-format.nvim" },
   },
   config = function()
     local lsp = require("lsp-zero").preset({})
 
     lsp.on_attach(function(client, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
-      -- lsp.buffer_autoformat()
+      require('lsp-format').on_attach(client)
     end)
 
     lsp.set_sign_icons({
