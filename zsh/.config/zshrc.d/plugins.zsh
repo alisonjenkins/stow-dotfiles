@@ -31,9 +31,7 @@ zinit light jdxcode/rtx
 eval "$(rtx activate zsh)"
 
 # install zoxide
-zinit ice wait lucid from"gh-r" as"command" \
-  atclone'./zoxide init zsh > init.zsh' \
-  atpull'%atclone' src"init.zsh"
+rtx global zoxide@0.9.0 &>/dev/null
 zinit light ajeetdsouza/zoxide
 
 # Setup direnv
