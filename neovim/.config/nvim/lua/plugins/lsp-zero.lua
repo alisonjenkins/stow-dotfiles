@@ -18,6 +18,10 @@ return {
   },
   config = function()
     local lsp = require("lsp-zero").preset({})
+    local exclude_formatting_lsps = {
+      "copilot",
+      "groovyls",
+    }
 
     local on_attach = function(client, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
