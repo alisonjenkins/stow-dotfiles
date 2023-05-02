@@ -25,7 +25,10 @@ return {
 
     local on_attach = function(client, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
-      require('lsp-format').on_attach(client)
+
+      if not vim.tbl_contains(exclude_formatting_lsps, client.name) then
+        require('lsp-format').on_attach(client)
+      end
     end
 
     lsp.on_attach(on_attach)
