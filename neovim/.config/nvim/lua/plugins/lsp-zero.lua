@@ -26,6 +26,8 @@ return {
     local on_attach = function(client, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
 
+      vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = true })
+
       if not vim.tbl_contains(exclude_formatting_lsps, client.name) then
         require('lsp-format').on_attach(client)
       end
@@ -41,8 +43,6 @@ return {
     })
 
     lsp.ensure_installed({
-      "rust_analyzer",
-      "groovyls",
     })
 
     -- (Optional) Configure lua language server for neovim
