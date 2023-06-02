@@ -14,7 +14,7 @@ return {
     { "hrsh7th/cmp-nvim-lsp" },
     { "L3MON4D3/LuaSnip" },
     { "lukas-reineke/lsp-format.nvim" },
-    { "simrat39/rust-tools.nvim" },
+    "MunifTanjim/rust-tools.nvim",
   },
   config = function()
     local lsp = require("lsp-zero").preset({})
