@@ -53,7 +53,11 @@ local M = {
 function M.config()
 	local go = require("go")
 
-	go.setup()
+	go.setup({
+		lsp_inlay_hints = {
+			enable = false
+		}
+	})
 
 	local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 	vim.api.nvim_create_autocmd("BufWritePre", {
