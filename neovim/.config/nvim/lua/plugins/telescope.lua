@@ -83,6 +83,7 @@ function M.config()
     end,
     projects = function()
       require("project_nvim").setup({
+        show_hidden = true,
         ignore_lsp = {
           "null-ls",
         },
