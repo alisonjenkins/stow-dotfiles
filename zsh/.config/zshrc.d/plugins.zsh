@@ -12,6 +12,11 @@ export _ZL_MATCH_MODE=1
 
 # zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+# Load sensitive envvars
+if [[ -e ~/git/secret-envvars ]]; then
+  eval $(~/git/secret-envvars/target/release/get-secrets)
+fi
+
 zinit ice from"gh-r" as"program" atclone"./starship init zsh > init.zsh" atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 

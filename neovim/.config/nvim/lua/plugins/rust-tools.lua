@@ -1,9 +1,7 @@
 local M = {
-  "simrat39/rust-tools.nvim",
+  "MunifTanjim/rust-tools.nvim",
   ft = "rust",
-  dependencies = {
-    "simrat39/inlay-hints.nvim",
-  },
+  branch = "patched",
 }
 
 function M.config()
@@ -45,17 +43,8 @@ function M.config()
     return
   end
 
-  local ih_ok, ih = pcall(require, "inlay-hints")
-
-  if not ih_ok then
-    return
-  end
-
   rt.setup({
     tools = {
-      on_initialized = function()
-        ih.set_all()
-      end,
       inlay_hints = {
         auto = false,
       },
