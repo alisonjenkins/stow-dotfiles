@@ -1,0 +1,28 @@
+# https://x4dev.wordpress.com/2011/03/26/howto-logitech-mx-revolution-on-ubuntu/
+# Button Assignments for the MX Revolution
+# Name	Xbindkeys Number
+# Left click	b:1
+# Right click	b:3
+# Main Wheel press down	b:2
+# Main Wheel press left	b:7
+# Main Wheel press right b:6
+# Second Wheel press down	b:17
+# Second Wheel press forward	b:13
+# Second Wheel press backward	b:15
+# Button Up	b:9
+# Button Down	b:8
+
+"/usr/bin/xvkbd -text "\[Control_L]\[Page_Up]""
+  m:0x0 + b:15
+"/usr/bin/xvkbd -text "\[Control_L]\[Page_Down]""
+  m:0x0 + b:13
+"/usr/bin/xvkbd -text "\[Control_L]\[w]""
+  m:0x0 + b:17
+"/usr/bin/xvkbd -text "\[Control_L]\[ShiftL]\[p]""
+  m:0x0 + b:6
+
+# map search button as third
+"/usr/bin/xvkbd -text "\[Alt_L]\[F4]""
+c:0xE1
+
+# c:0xE1

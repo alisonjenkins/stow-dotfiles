@@ -36,15 +36,8 @@ if command -v fdfind &>/dev/null; then
 fi
 
 # SSH key aliases
-alias key='ssh-add ~/.ssh/ssh_keys/id_bashton_alan'
-alias keyaur="ssh-add ~/.ssh/ssh_keys/id_aur"
-alias keyb='ssh-add ~/.ssh/ssh_keys/id_bashton'
+alias key='ssh-add ~/.ssh/ssh_keys/gitkey'
 alias keycl='ssh-add -D'
-alias keyp='ssh-add ~/.ssh/ssh_keys/id_personal'
-alias keypa='ssh-add ~/.ssh/ssh_keys/id_alan-aws'
-alias keypo='ssh-add ~/.ssh/ssh_keys/id_personal_old'
-alias keyk='ssh-add ~/.ssh/ssh_keys/id_krystal'
-alias kmse='export EYAML_CONFIG=$PWD/.kms-eyaml.yaml'
 
 # Use Neovim instead of Vim
 if command -v nvim &>/dev/null; then
@@ -78,4 +71,4 @@ else
 fi
 
 # Kubernetes aliases
-alias watchhr="watch 'kubectl get hr -A'"
+# alias watchhr="watch 'kubectl get hr -A'"

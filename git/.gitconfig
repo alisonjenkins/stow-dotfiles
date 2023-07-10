@@ -1,8 +1,11 @@
 # Global Config
 [user]
-  email = alison.juliet.jenkins@gmail.com
-  name = Alison Jenkins
-  #signingkey = **Your GPG ID**
+    email = lukasz.m.wojnicki@gmail.com
+    name = Lukas Wojnicki
+    signingkey = ...
+
+[commit]
+    gpgsign = true
 
 [branch]
   autosetuprebase = always
@@ -186,5 +189,5 @@
 
 [commit]
   template = ~/.gittemplate
-[http]
-	postBuffer = 524288000
+[help]
+	autocorrect = 3
