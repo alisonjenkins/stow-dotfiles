@@ -36,6 +36,7 @@ if [ -f /etc/arch-release ]; then
     sccache
     seahorse
     slack-desktop
+    starship
     steam
     stow
     tig
