@@ -6,7 +6,7 @@ if [ -f /etc/arch-release ]; then
   PACKAGES=(
     alacritty
     aria2
-    asdf-vm
+    asdf-vm-git
     aws-session-manager-plugin
     aws-vault
     azure-cli
