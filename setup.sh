@@ -18,6 +18,7 @@ if [ -f /etc/arch-release ]; then
     fd
     freeplane
     git
+    gnu-netcat
     haveged
     jq
     kubecm-git
