@@ -21,7 +21,7 @@ if [ -f /etc/arch-release ]; then
     haveged
     jq
     kubecm-git
-    logseq-desktop
+    logseq-desktop-wayland-bin
     luarocks
     mold
     mosh
@@ -69,62 +69,6 @@ if [ -f /etc/arch-release ]; then
   if [ "${#INSTALL_PACKAGES[@]}" -gt 0 ]; then
     paru --noconfirm -S "${INSTALL_PACKAGES[@]}"
   fi
-
-  set +e
-  ASDF_PLUGINS_INSTALLED=($(asdf plugin list 2>&1))
-  set -e
-  declare -a ASDF_PLUGINS_TO_INSTALL
-  ASDF_PLUGINS_TO_INSTALL=(
-    awscli
-    direnv
-    flux2
-    github-cli
-    helm
-    java
-    just
-    k9s
-    kubectl
-    kubectx
-    maven
-    nodejs
-    packer
-    sops
-    terraform
-    terraform-docs
-    tflint
-    tfsec
-  )
-
-  echo "ASDF Plugins installed: ${ASDF_PLUGINS_INSTALLED[@]}"
-
-  # Ensure all listed asdf plugins are installed
-  for PLUGIN in "${ASDF_PLUGINS_TO_INSTALL[@]}"; do
-    echo "Checking $PLUGIN"
-    if ! echo "${ASDF_PLUGINS_INSTALLED[@]}" | grep -q "$PLUGIN" &>/dev/null; then
-      echo "Attempting to install plugin: $PLUGIN"
-      asdf plugin add "$PLUGIN"
-    fi
-  done
-
-  ASDF_PLUGINS_INSTALLED=($(asdf plugin list))
-  declare -A ASDF_TOOL_VERSIONS
-
-  ASDF_TOOL_VERSIONS=(
-    [java]="corretto-11.0.16.8.1"
-    [just]="1.3.0"
-    [maven]="3.8.6"
-  )
-
-  # Ensure the latest versions of software are installed via asdf
-  for plugin in "${ASDF_PLUGINS_INSTALLED[@]}"; do
-    if [ "${ASDF_TOOL_VERSIONS[$plugin]+exists}" ]; then
-      INSTALL_VERSION=${ASDF_TOOL_VERSIONS[$plugin]}
-    else
-      INSTALL_VERSION=$(asdf list all "$plugin" | tail -n1)
-    fi
-    asdf install "$plugin" "$INSTALL_VERSION"
-    asdf global "$plugin" "$INSTALL_VERSION"
-  done
 
   # pip packages
   declare -a PIP_PACKAGES_INSTALLED
