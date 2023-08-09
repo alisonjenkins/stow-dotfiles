@@ -71,21 +71,21 @@ if [ -f /etc/arch-release ]; then
     paru --noconfirm -S "${INSTALL_PACKAGES[@]}"
   fi
 
-  # pip packages
-  declare -a PIP_PACKAGES_INSTALLED
-  declare -a PIP_PACKAGES_TO_INSTALL
-  PIP_PACKAGES_INSTALLED=($(pip list))
-
-  PIP_PACKAGES_TO_INSTALL=(
-    git-remote-codecommit
-    neovim
-  )
-
-  for PACKAGE in "${PIP_PACKAGES_TO_INSTALL[@]}"; do
-    if ! echo "${PIP_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
-      pip install "$PACKAGE"
-    fi
-  done
+  # # pip packages
+  # declare -a PIP_PACKAGES_INSTALLED
+  # declare -a PIP_PACKAGES_TO_INSTALL
+  # PIP_PACKAGES_INSTALLED=($(pip list))
+  #
+  # PIP_PACKAGES_TO_INSTALL=(
+  #   git-remote-codecommit
+  #   neovim
+  # )
+  #
+  # for PACKAGE in "${PIP_PACKAGES_TO_INSTALL[@]}"; do
+  #   if ! echo "${PIP_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
+  #     pip install "$PACKAGE"
+  #   fi
+  # done
 
   # gem packages
   declare -a GEM_PACKAGES_INSTALLED
