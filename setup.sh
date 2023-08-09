@@ -27,7 +27,6 @@ if [ -f /etc/arch-release ]; then
     mold
     mosh
     neovim
-    nerd-fonts-hack
     nnn
     perimeter81
     pwgen
@@ -42,6 +41,7 @@ if [ -f /etc/arch-release ]; then
     tig
     tilt-bin
     tmux
+    ttf-hack-nerd
     xclip
     zoxide
     zsh
