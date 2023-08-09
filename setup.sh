@@ -88,33 +88,33 @@ if [ -f /etc/arch-release ]; then
   # done
 
   # gem packages
-  declare -a GEM_PACKAGES_INSTALLED
-  declare -a GEM_PACKAGES_TO_INSTALL
-  GEM_PACKAGES_INSTALLED=($(gem list))
-
-  GEM_PACKAGES_TO_INSTALL=(
-    neovim
-  )
-
-  for PACKAGE in "${GEM_PACKAGES_TO_INSTALL[@]}"; do
-    if ! echo "${GEM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
-      gem install "$PACKAGE"
-    fi
-  done
-
-  # npm packages
-  declare -a NPM_PACKAGES_INSTALLED
-  declare -a NPM_PACKAGES_TO_INSTALL
-  NPM_PACKAGES_INSTALLED=($(npm list))
-  NPM_PACKAGES_TO_INSTALL=(
-    neovim
-  )
-
-  for PACKAGE in "${NPM_PACKAGES_TO_INSTALL[@]}"; do
-    if ! echo "${NPM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
-      npm install -g "$PACKAGE"
-    fi
-  done
+  # declare -a GEM_PACKAGES_INSTALLED
+  # declare -a GEM_PACKAGES_TO_INSTALL
+  # GEM_PACKAGES_INSTALLED=($(gem list))
+  #
+  # GEM_PACKAGES_TO_INSTALL=(
+  #   neovim
+  # )
+  #
+  # for PACKAGE in "${GEM_PACKAGES_TO_INSTALL[@]}"; do
+  #   if ! echo "${GEM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
+  #     gem install "$PACKAGE"
+  #   fi
+  # done
+  #
+  # # npm packages
+  # declare -a NPM_PACKAGES_INSTALLED
+  # declare -a NPM_PACKAGES_TO_INSTALL
+  # NPM_PACKAGES_INSTALLED=($(npm list))
+  # NPM_PACKAGES_TO_INSTALL=(
+  #   neovim
+  # )
+  #
+  # for PACKAGE in "${NPM_PACKAGES_TO_INSTALL[@]}"; do
+  #   if ! echo "${NPM_PACKAGES_INSTALLED[@]}" | grep -q "$PACKAGE" &>/dev/null; then
+  #     npm install -g "$PACKAGE"
+  #   fi
+  # done
 fi
 
 # Ensure tmux plugin manager is installed
