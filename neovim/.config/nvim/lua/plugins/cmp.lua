@@ -52,20 +52,16 @@ function M.config()
       border = "rounded",
       winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
     },
-
     confirm_opts = {
       border = "rounded",
       select = false,
     },
-
     window = {
       documentation = cmp.config.window.bordered(),
     },
-
     experimental = {
       ghost_text = true,
     },
-
     formatting = {
       format = function(entry, item)
         item.kind = lspkind.presets.default[item.kind]
@@ -81,7 +77,6 @@ function M.config()
         return item
       end,
     },
-
     mapping = cmp.mapping.preset.insert({
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -89,7 +84,6 @@ function M.config()
       ["<C-e>"] = cmp.mapping.abort(),
       ["<C-y>"] = cmp.mapping.confirm({ select = true }),
     }),
-
     -- mapping = {
     -- 	["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i" }),
     -- 	["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i" }),
@@ -128,7 +122,6 @@ function M.config()
         priority = 4,
       },
     },
-
     sorting = {
       priority_weight = 1,
       comparators = {
