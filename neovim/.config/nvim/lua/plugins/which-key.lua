@@ -129,11 +129,9 @@ function M.config()
 
     -- Splitting maps (ported from the old whichkey bindings{{{
     h = { "<C-W>s", "Split horizontally" },
-    v = { "<C-W>v", "Split vertically" }, --}}}
-
+    v = { "<C-W>v", "Split vertically" },       --}}}
     -- Alpha maps{{{
     [";"] = { "<cmd>Alpha<cr>", "Show Alpha" }, --}}}
-
     -- Debug mappings{{{
     d = {
       name = "+debug",
@@ -181,12 +179,10 @@ function M.config()
         v = { '<cmd>lua require"telescope".extensions.dap.variables{}<CR>', "DAP Variables" },
       },
     }, --}}}
-
     -- Telescope mappings{{{
     b = { "<cmd>Telescope buffers<cr>", "Buffers (Telescope)" },
     f = { "<cmd>Telescope find_files<cr>", "Find files (Telescope)" },
     F = { "<cmd>Telescope find_files hidden=true<cr>", "Find files including hidden files (Telescope)" },
-    o = { "<cmd>Telescope smart_open<cr>", "Open files (Telescope)" },
     -- }}}
 
     -- s is for search powered by Telescope{{{
@@ -265,7 +261,6 @@ function M.config()
         "Switch directory with Z",
       },
     }, --}}}
-
     -- l is for Language Server Protocol (LSP){{{
     l = {
       name = "+lsp",
@@ -291,15 +286,12 @@ function M.config()
         r = { "<cmd>TroubleRefresh<cr>", "Refresh Trouble" },
       },
       x = { "<cmd>cclose<cr>", "Close Quickfix" },
-    }, --}}}
-
+    },                                                            --}}}
     -- Markdown Preview mappings{{{
     M = { "<cmd>MarkdownPreviewToggle<cr>", "Preview Markdown" }, --}}}
-
     -- Neural AI completion mappings {{{
     n = {
       name = "Neural AI code completion",
-
       n = {
         "<cmd>NeuralPrompt<cr>",
         "Neural Prompt",
@@ -353,7 +345,6 @@ function M.config()
         s = { "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", "Switch" },
       },
     }, --}}}
-
     -- Quickfix mappings (all start with q){{{
     q = {
       name = "+quickfix",
@@ -368,7 +359,6 @@ function M.config()
       f = { "<cmd>lua require('harpoon.ui').nav_file(4)<cr>", "Open mark 4" },
       M = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "Toggle marks menu" },
     }, --}}}
-
     -- p is for Pomodoro {{{
     p = {
       name = "+pomodoro",
