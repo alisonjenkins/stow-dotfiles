@@ -29,8 +29,6 @@ local M = {
     "hrsh7th/cmp-nvim-lsp-document-symbol",
     { "romgrk/fzy-lua-native",    build = "make" },
     { "tzachar/cmp-fuzzy-buffer", dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
-    { "jcdickinson/codeium.nvim", config = true },
-    { "jcdickinson/http.nvim",    build = "cargo build --workspace --release" },
   },
 }
 
@@ -44,7 +42,6 @@ function M.config()
 
   local source_mapping = {
     buffer = "[BUF]",
-    codium = "[CO]",
     nvim_lsp = "[LSP]",
     nvim_lua = "[LUA]",
     path = "[PATH]",
@@ -78,8 +75,6 @@ function M.config()
           item.kind = "[] Copilot"
           item.kind_hl_group = "CmpItemKindCopilot"
           return item
-        elseif entry.source.name == "codeium" then
-          item.kind = "^"
         end
 
         item.menu = menu
@@ -112,7 +107,6 @@ function M.config()
     -- },
 
     sources = {
-      { name = "codeium",                 group_index = 1 },
       { name = "copilot",                 priority = 8 },
       { name = "nvim_lsp",                priority = 7 },
       { name = "nvim_lsp_signature_help", priority = 7 },
