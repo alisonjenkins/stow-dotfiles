@@ -27,7 +27,6 @@ local M = {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-nvim-lsp-document-symbol",
-    { "tzachar/cmp-tabnine",      build = "./install.sh" },
     { "romgrk/fzy-lua-native",    build = "make" },
     { "tzachar/cmp-fuzzy-buffer", dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" } },
     { "jcdickinson/codeium.nvim", config = true },
@@ -45,7 +44,6 @@ function M.config()
 
   local source_mapping = {
     buffer = "[BUF]",
-    cmp_tabnine = "[TN]",
     codium = "[CO]",
     nvim_lsp = "[LSP]",
     nvim_lua = "[LUA]",
@@ -80,12 +78,6 @@ function M.config()
           item.kind = "[] Copilot"
           item.kind_hl_group = "CmpItemKindCopilot"
           return item
-        elseif entry.source.name == "cmp_tabnine" then
-          if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-            menu = entry.completion_item.data.detail .. " " .. menu
-          end
-          item.kind = ""
-          item.kind_hl_group = "CmpItemKindTabnine"
         elseif entry.source.name == "codeium" then
           item.kind = "^"
         end
@@ -122,7 +114,6 @@ function M.config()
     sources = {
       { name = "codeium",                 group_index = 1 },
       { name = "copilot",                 priority = 8 },
-      { name = "cmp_tabnine",             priority = 8 },
       { name = "nvim_lsp",                priority = 7 },
       { name = "nvim_lsp_signature_help", priority = 7 },
       -- { name = "cmp_pandoc",  },
@@ -149,7 +140,6 @@ function M.config()
       comparators = {
         require("copilot_cmp.comparators").prioritize,
         require("copilot_cmp.comparators").score,
-        require("cmp_tabnine.compare"),
         require("cmp_fuzzy_buffer.compare"),
         compare.locality,
         compare.recently_used,
