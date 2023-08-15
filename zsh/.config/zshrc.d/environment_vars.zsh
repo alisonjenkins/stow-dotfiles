@@ -1,3 +1,7 @@
+if [[ ! -v XDG_CONFIG_HOME ]] || [ -z ${XDG_CONFIG_HOME+x} ];   ; then
+  export XDG_CONFIG_HOME="$HOME/.config"
+fi
+
 # SSH agent
 if uname -a | grep 'Linux' &> /dev/null; then
   if [ -z "$SSH_AUTH_SOCK" ]; then
