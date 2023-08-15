@@ -60,7 +60,8 @@ case $(uname) in
         mcfly_os="*x86_64*darwin*"
       ;;
       arm64)
-        mcfly_os="*aarch64*darwin*"
+        #mcfly_os="*aarch64*darwin*"
+        mcfly_os="*x86_64*darwin*"
       ;;
     esac
   ;;
