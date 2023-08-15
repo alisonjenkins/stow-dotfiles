@@ -47,6 +47,7 @@ direnv() { rtx exec direnv -- direnv "$@"; }
 
 zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/aws/aws.plugin.zsh'
 zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/command-not-found/command-not-found.plugin.zsh'
+zinit snippet 'https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh'
 
 # For postponing loading `fzf`
 zinit ice lucid wait
@@ -57,11 +58,10 @@ case $(uname) in
   Darwin)
     case $(uname -m) in
       x86_64)
-        mcfly_os="*x86_64*darwin*"
+        mcfly_os="*x86_64-apple-darwin*"
       ;;
       arm64)
-        #mcfly_os="*aarch64*darwin*"
-        mcfly_os="*x86_64*darwin*"
+        mcfly_os="*aarch64*darwin*"
       ;;
     esac
   ;;
@@ -77,8 +77,15 @@ case $(uname) in
   ;;
 esac
 
-zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"' bpick"${mcfly_os}"
+if [[ "$mcfly_os" == "*aarch64*darwin*" ]]; then
+  zinit ice lucid wait"0a" as"program" atclone"cargo build --release" pick"./target/release/mcfly" atload'eval "$(mcfly init zsh)"'
+else
+  zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"' bpick"${mcfly_os}"
+fi
 zinit light cantino/mcfly
+
+# zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"' bpick"${mcfly_os}"
+# zinit light cantino/mcfly
 
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
