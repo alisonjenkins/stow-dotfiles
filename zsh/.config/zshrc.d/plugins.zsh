@@ -27,6 +27,7 @@ zinit load fabiokiatkowski/exercism.plugin.zsh
 zinit load joepvd/zsh-hints
 zinit load macunha1/zsh-terraform
 zinit load molovo/tipz
+zinit load zsh-users/zsh-autosuggestions
 zinit load zsh-users/zsh-completions
 
 # Install rtx version manager (replacement for asdf)
@@ -47,7 +48,6 @@ direnv() { rtx exec direnv -- direnv "$@"; }
 
 zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/aws/aws.plugin.zsh'
 zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/command-not-found/command-not-found.plugin.zsh'
-zinit snippet 'https://raw.githubusercontent.com/zsh-users/zsh-autosuggestions/master/zsh-autosuggestions.zsh'
 
 # For postponing loading `fzf`
 zinit ice lucid wait
