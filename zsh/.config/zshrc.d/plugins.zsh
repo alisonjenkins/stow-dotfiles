@@ -26,9 +26,8 @@ zinit load alanjjenkins/kube-aliases
 zinit load fabiokiatkowski/exercism.plugin.zsh
 zinit load joepvd/zsh-hints
 zinit load macunha1/zsh-terraform
+zinit load marlonrichert/zsh-autocomplete
 zinit load molovo/tipz
-zinit load zsh-users/zsh-autosuggestions
-zinit load zsh-users/zsh-completions
 
 # Install rtx version manager (replacement for asdf)
 zinit ice from"gh-r" as"command" mv"rtx* -> rtx" \
