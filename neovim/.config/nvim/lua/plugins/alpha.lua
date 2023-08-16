@@ -1,6 +1,6 @@
 local M = {
   "goolord/alpha-nvim",
-  dependencies = { "kyazdani42/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   lazy = false,
   priority = 1001,
 }

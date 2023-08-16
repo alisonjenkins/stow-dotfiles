@@ -2,7 +2,7 @@ local M = {
   "alvarosevilla95/luatab.nvim",
   lazy = true,
   event = "TabNew",
-  dependencies = { "kyazdani42/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
 }
 
 function M.config()

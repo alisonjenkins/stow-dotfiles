@@ -15,7 +15,7 @@ local M = {
     "nvim-telescope/telescope-packer.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
     { "nvim-telescope/telescope-fzy-native.nvim", dependencies = { "romgrk/fzy-lua-native" } },
-    { "kyazdani42/nvim-web-devicons" },
+    { "nvim-tree/nvim-web-devicons" },
   },
 }
 
