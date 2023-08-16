@@ -25,6 +25,7 @@ zinit load Aloxaf/fzf-tab
 zinit load alanjjenkins/kube-aliases
 zinit load fabiokiatkowski/exercism.plugin.zsh
 zinit load joepvd/zsh-hints
+zinit load l-umaca/omz-fluxcd-plugin
 zinit load macunha1/zsh-terraform
 zinit load marlonrichert/zsh-autocomplete
 zinit load molovo/tipz
