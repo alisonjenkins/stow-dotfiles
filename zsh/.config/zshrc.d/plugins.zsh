@@ -27,7 +27,7 @@ zinit load fabiokiatkowski/exercism.plugin.zsh
 zinit load joepvd/zsh-hints
 zinit load l-umaca/omz-fluxcd-plugin
 zinit load macunha1/zsh-terraform
-zinit load marlonrichert/zsh-autocomplete
+zinit load zsh-users/zsh-autosuggestions
 zinit load molovo/tipz
 
 # Install rtx version manager (replacement for asdf)
