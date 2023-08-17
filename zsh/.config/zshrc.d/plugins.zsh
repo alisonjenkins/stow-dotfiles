@@ -88,8 +88,5 @@ else
 fi
 zinit light cantino/mcfly
 
-# zinit ice lucid wait"0a" from"gh-r" as"program" atload'eval "$(mcfly init zsh)"' bpick"${mcfly_os}"
-# zinit light cantino/mcfly
-
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
