@@ -36,6 +36,10 @@ zinit ice from"gh-r" as"command" mv"rtx* -> rtx" \
 zinit light jdxcode/rtx
 eval "$(rtx activate zsh)"
 
+# Setup Vi mode
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
 # install zoxide
 rtx global zoxide@0.9.0 &>/dev/null
 zinit light ajeetdsouza/zoxide
