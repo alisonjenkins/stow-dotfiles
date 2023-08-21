@@ -33,7 +33,7 @@ function M.config()
     icons = {
       breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
       separator = "➜", -- symbol used between a key and it's label
-      group = "+",      -- symbol prepended to a group
+      group = "+", -- symbol prepended to a group
     },
     window = {
       border = "none",          -- none, single, double, shadow
@@ -113,11 +113,6 @@ function M.config()
   vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
   vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
   vim.api.nvim_set_keymap("n", "<Leader>l", ":noh<CR>", kopts)
-  -- }}}
-
-  -- {{{ Nvim Keymaps
-  -- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-  -- vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, noremap = true })
   -- }}}
 
   -- Setup leader based mappings with which-key so they are documented and
@@ -275,7 +270,6 @@ function M.config()
       d = { "<cmd>Telescope diagnostics bufnr=0<cr>", "Document Diagnostics" },
       f = { "<cmd>lua vim.lsp.buf.format { async = true }<cr>", "Format" },
       o = { "<cmd>Telescope treesitter<cr>", "Outline" },
-      -- p = { "<cmd>Lspsaga peek_definition<cr>", "Preview Definition" },
       q = { "<cmd>Telescope quickfix<cr>", "Quickfix" },
       r = { "<cmd>lua RustRunnables<cr>", "Runnables" },
       R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
