@@ -1,9 +1,8 @@
-local M = {
-	"numToStr/Navigator.nvim",
+return {
+  'ray-x/navigator.lua',
+  requires = {
+    { 'ray-x/guihua.lua',     run = 'cd lua/fzy && make' },
+    { 'neovim/nvim-lspconfig' },
+  },
+  config = true,
 }
-
-function M.config()
-	require("Navigator").setup()
-end
-
-return M
