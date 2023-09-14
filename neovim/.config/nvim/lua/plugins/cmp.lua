@@ -10,17 +10,9 @@ local M = {
     "hrsh7th/cmp-cmdline",
     {
       "zbirenbaum/copilot-cmp",
-      module = "copilot_cmp",
-      config = function()
-        require("copilot_cmp").setup({
-          method = "getCompletionsCycling",
-          formatters = {
-            label = require("copilot_cmp.format").format_label_text,
-            insert_text = require("copilot_cmp.format").format_insert_text,
-            preview = require("copilot_cmp.format").deindent,
-          },
-        })
-      end,
+      config = function ()
+        require("copilot_cmp").setup()
+      end
     },
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
@@ -77,6 +69,11 @@ function M.config()
         return item
       end,
     },
+    performance = {
+      trigger_debounce_time = 500,
+      throttle = 550,
+      fetching_timeout = 80,
+    },
     mapping = cmp.mapping.preset.insert({
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
@@ -113,20 +110,19 @@ function M.config()
       -- { name = "spell", keyword_length = 3, priority = 5, keyword_pattern = [[\w\+]] },
       { name = "path",                    keyword_length = 5 },
       -- { name = "fuzzy_buffer", priority = 4 },
-      {
-        name = "tmux",
-        option = {
-          all_panes = true,
-          label = "[tmux]",
-        },
-        priority = 4,
-      },
+      -- {
+      --   name = "tmux",
+      --   option = {
+      --     all_panes = true,
+      --     label = "[tmux]",
+      --   },
+      --   priority = 4,
+      -- },
     },
     sorting = {
-      priority_weight = 1,
+      priority_weight = 2,
       comparators = {
         require("copilot_cmp.comparators").prioritize,
-        require("copilot_cmp.comparators").score,
         require("cmp_fuzzy_buffer.compare"),
         compare.locality,
         compare.recently_used,
@@ -138,22 +134,22 @@ function M.config()
   })
 
   -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline("/", {
-    sources = {
-      { name = "fuzzy_buffer" },
-      { name = "nvim_lsp_document_symbol" },
-    },
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(":", {
-    sources = cmp.config.sources({
-      -- { name = "fuzzy_path" },
-      { name = "cmdline" },
-    }),
-  })
-
-  require("cmp_pandoc").setup()
+  -- cmp.setup.cmdline("/", {
+  --   sources = {
+  --     { name = "fuzzy_buffer" },
+  --     { name = "nvim_lsp_document_symbol" },
+  --   },
+  -- })
+  --
+  -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  -- cmp.setup.cmdline(":", {
+  --   sources = cmp.config.sources({
+  --     -- { name = "fuzzy_path" },
+  --     { name = "cmdline" },
+  --   }),
+  -- })
+  --
+  -- require("cmp_pandoc").setup()
 end
 
 return M
