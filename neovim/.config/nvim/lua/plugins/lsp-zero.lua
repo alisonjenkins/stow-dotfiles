@@ -13,6 +13,7 @@ return {
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "L3MON4D3/LuaSnip" },
+    { "MunifTanjim/rust-tools.nvim", branch = "patched", },
   },
   config = function()
     local lsp_zero = require("lsp-zero")
@@ -46,6 +47,17 @@ return {
       ensure_installed = {},
       handlers = {
         lsp_zero.default_setup,
+        rust_analyzer = function()
+          local rust_tools = require('rust-tools')
+
+          rust_tools.setup({
+            server = {
+              on_attach = function(client, bufnr)
+                vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions, {buffer = bufnr})
+              end
+            }
+          })
+        end
       },
     })
 
