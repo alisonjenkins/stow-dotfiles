@@ -4,7 +4,6 @@ vim.loop.fs_mkdir(vim.o.directory, 750)
 vim.loop.fs_mkdir(vim.o.undodir, 750)
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 vim.o.backup = true -- enable backups so if Neovim crashes or you lose power you do not lose your work.
 vim.o.backupdir = vim.fn.stdpath("data") .. "/backup" -- set backup directory to be a subdirectory of data to ensure that backups are not written to git repos
 vim.o.cmdheight = 2 -- More space for displaying messages
@@ -14,6 +13,7 @@ vim.o.conceallevel = 0 -- So that I can see `` in markdown files
 vim.o.cursorline = true -- Enable highlighting of the current line
 vim.o.directory = vim.fn.stdpath("data") .. "/directory" -- Configure 'directory' to ensure that Neovim swap files are not written to repos.
 vim.o.expandtab = true -- Converts tabs to spaces
+vim.g.maplocalleader = ","
 --vim.o.foldclose = "true"
 vim.o.foldenable = true
 vim.o.foldlevel = 99
