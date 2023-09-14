@@ -14,6 +14,7 @@ local M = {
     "nvim-telescope/telescope-github.nvim",
     "nvim-telescope/telescope-packer.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
+    'piersolenski/telescope-import.nvim',
     { "nvim-telescope/telescope-fzy-native.nvim", dependencies = { "romgrk/fzy-lua-native" } },
     { "nvim-tree/nvim-web-devicons" },
   },

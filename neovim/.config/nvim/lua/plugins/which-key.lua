@@ -175,9 +175,10 @@ function M.config()
       },
     }, --}}}
     -- Telescope mappings{{{
+    F = { "<cmd>Telescope find_files hidden=true<cr>", "Find files including hidden files (Telescope)" },
     b = { "<cmd>Telescope buffers<cr>", "Buffers (Telescope)" },
     f = { "<cmd>Telescope find_files<cr>", "Find files (Telescope)" },
-    F = { "<cmd>Telescope find_files hidden=true<cr>", "Find files including hidden files (Telescope)" },
+    i = { "<cmd>Telescope import<cr>", "Import libraries using Telescope" },
     -- }}}
 
     -- s is for search powered by Telescope{{{
