@@ -1,0 +1,164 @@
+#!/bin/sh
+function parse_arguments() {
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -s|--speakers)
+        if [ -n "$2" ] && [ "$2" -ge 0 ] && [ "$2" -le 100 ]; then
+          SPEAKER_VOLUME="$2"
+        else
+          echo "Invalid speaker volume. Please enter a value between 0 and 100."
+          exit 1
+        fi
+        shift 2
+        ;;
+      -m|--microphone)
+        if [ -n "$2" ] && [ "$2" -ge 0 ] && [ "$2" -le 100 ]; then
+          MIC_VOLUME="$2"
+        else
+          echo "Invalid microphone volume. Please enter a value between 0 and 100."
+          exit 1
+        fi
+        shift 2
+        ;;
+      -sm|--mute-speakers)
+        TOGGLE_SPEAKER_MUTE=1
+        shift
+        ;;
+      -mm|--mute-microphone)
+        TOGGLE_MIC_MUTE=1
+        shift
+        ;;
+      -si|--increase-speakers)
+        INCREASE_SPEAKER="$2"
+        shift 2
+        ;;
+      -mi|--increase-microphone)
+        INCREASE_MIC="$2"
+        shift 2
+        ;;
+      -sd|--decrease-speakers)
+        DECREASE_SPEAKER="$2"
+        shift 2
+        ;;
+      -md|--decrease-microphone)
+        DECREASE_MIC="$2"
+        shift 2
+        ;;
+      *)
+        echo "Invalid argument: $1"
+        exit 1
+        ;;
+    esac
+  done
+}
+
+get_speaker_volume() {
+	volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -Eo '[0-9\.]*' | { read -r number; echo "scale=0; $number * 100" | bc | cut -d'.' -f1 })
+	echo "$volume"
+}
+
+get_mic_volume() {
+	volume=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -Eo '[0-9\.]*' | { read -r number; echo "scale=0; $number * 100" | bc | cut -d'.' -f1 })
+	echo "$volume"
+}
+
+get_icon() {
+  case "$1" in
+    speaker)
+      device="Speaker"
+      current=$(get_speaker_volume)
+      ;;
+    mic)
+      device="Microphone"
+      current=$(get_mic_volume)
+      ;;
+  esac
+  ICON_DIR="$HOME/.config/waybar/scripts/icons"
+	if [[ "$current" -eq "0" ]]; then
+		echo "$ICON_DIR/volume-mute.png"
+	elif [[ ("$current" -ge "0") && ("$current" -le "30") ]]; then
+		echo "$ICON_DIR/volume-low.png"
+	elif [[ ("$current" -ge "30") && ("$current" -le "60") ]]; then
+		echo "$ICON_DIR/volume-mid.png"
+	elif [[ ("$current" -ge "60") && ("$current" -le "100") ]]; then
+		echo "$ICON_DIR/volume-high.png"
+	fi
+}
+
+notify_user() {
+  echo "Entering notify_user"
+  case $1 in
+    speaker)
+      device="speaker"
+      pretty_device="Speaker"
+      volume=$(get_speaker_volume)
+      ;;
+    mic)
+      device="microphone"
+      pretty_device="Microphone"
+      volume=$(get_mic_volume)
+      ;;
+  esac
+
+  echo "Notifying user of $device volume: $volume%"
+	notify-send -h string:x-canonical-private-synchronous:sys-notify -u low -i "$(get_icon $device)" "$pretty_device Volume: $volume%"
+}
+
+set_speaker_volume() {
+    echo "Setting speaker volume to: $1%"
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ $1%
+    notify_user "speaker"
+}
+
+set_mic_volume() {
+    echo "Setting microphone volume to: $1%"
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SOURCE@ $1%
+    notify_user "mic"
+}
+
+toggle_speaker_mute() {
+    echo "Toggling mute for speakers."
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    notify_user "speaker"
+}
+
+toggle_mic_mute() {
+    echo "Toggling mute for microphone."
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    notify_user "mic"
+}
+
+increase_speaker_volume() {
+    echo "Increasing speaker volume by: $1%"
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ $1%+
+    notify_user "speaker"
+}
+
+increase_mic_volume() {
+    echo "Increasing microphone volume by: $1%"
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SOURCE@ $1%+
+    notify_user "mic"
+}
+
+decrease_speaker_volume() {
+    echo "Decreasing speaker volume by: $1%"
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ $1%-
+    notify_user "speaker"
+}
+
+decrease_mic_volume() {
+    echo "Decreasing microphone volume by: $1%"
+    wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SOURCE@ $1%-
+    notify_user "mic"
+}
+
+parse_arguments "$@"
+
+[ -n "$SPEAKER_VOLUME" ] && set_speaker_volume "$SPEAKER_VOLUME"
+[ -n "$MIC_VOLUME" ] && set_mic_volume "$MIC_VOLUME"
+[ -n "$TOGGLE_SPEAKER_MUTE" ] && toggle_speaker_mute
+[ -n "$TOGGLE_MIC_MUTE" ] && toggle_mic_mute
+[ -n "$INCREASE_SPEAKER" ] && increase_speaker_volume "$INCREASE_SPEAKER"
+[ -n "$INCREASE_MIC" ] && increase_mic_volume "$INCREASE_MIC"
+[ -n "$DECREASE_SPEAKER" ] && decrease_speaker_volume "$DECREASE_SPEAKER"
+[ -n "$DECREASE_MIC" ] && decrease_mic_volume "$DECREASE_MIC"
