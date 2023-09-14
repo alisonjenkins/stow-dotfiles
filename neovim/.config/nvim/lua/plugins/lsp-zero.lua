@@ -1,6 +1,6 @@
 return {
   "VonHeikemen/lsp-zero.nvim",
-  branch = "v2.x",
+  branch = "v3.x",
   dependencies = {
     { "neovim/nvim-lspconfig" },
     {
@@ -13,50 +13,41 @@ return {
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
     { "L3MON4D3/LuaSnip" },
-    { "lukas-reineke/lsp-format.nvim" },
-    "MunifTanjim/rust-tools.nvim",
   },
   config = function()
-    local lsp = require("lsp-zero").preset({})
+    local lsp_zero = require("lsp-zero")
+
+    lsp_zero.on_attach(function(client, bufnr)
+      -- see :help lsp-zero-keybindings
+      -- to learn the available actions
+      lsp_zero.default_keymaps(
+        {
+          buffer = bufnr,
+          preserve_mappings = false
+        }
+      )
+      vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = true })
+    end)
+
     local exclude_formatting_lsps = {
       "copilot",
       "groovyls",
     }
 
-    local on_attach = function(client, bufnr)
-      lsp.default_keymaps({ buffer = bufnr })
-
-      vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>', { buffer = true })
-
-      if not vim.tbl_contains(exclude_formatting_lsps, client.name) then
-        require('lsp-format').on_attach(client)
-      end
-    end
-
-    lsp.on_attach(on_attach)
-
-    lsp.set_sign_icons({
+    lsp_zero.set_sign_icons({
       error = "✘",
       warn = "▲",
       hint = "⚑",
       info = "»",
     })
 
-    lsp.ensure_installed({
+    require('mason').setup({})
+    require('mason-lspconfig').setup({
+      ensure_installed = {},
+      handlers = {
+        lsp_zero.default_setup,
+      },
     })
 
-    -- (Optional) Configure lua language server for neovim
-    require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-    lsp.skip_server_setup({ 'rust-analyzer', "sumneko_lua" })
-
-    lsp.setup()
-
-    local rust_tools = require('rust-tools')
-    rust_tools.setup({
-      server = {
-        on_attach = on_attach
-      }
-    })
   end,
 }
