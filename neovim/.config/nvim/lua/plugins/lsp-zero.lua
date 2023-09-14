@@ -9,6 +9,14 @@ return {
         pcall(vim.cmd, "MasonUpdate")
       end,
     },
+    {
+      'ray-x/navigator.lua',
+      requires = {
+        { 'ray-x/guihua.lua', run = 'cd lua/fzy && make' },
+        { 'neovim/nvim-lspconfig' },
+        { 'nvim-treesitter/nvim-treesitter'},
+      }
+    },
     { "williamboman/mason-lspconfig.nvim" },
     { "hrsh7th/nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp" },
