@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# This is a media player control script
+
+# parse arguments
+function parse_arguments() {
+  while [ "$#" -gt 0 ]; do
+    case "$1" in
+      -n|--next)
+        NEXT=true
+        shift
+        ;;
+      -p|--previous)
+        PREV=true
+        shift
+        ;;
+      -P|--play-pause)
+        PLAY_PAUSE=true
+        shift
+        ;;
+      *)
+        echo "Invalid argument: $1"
+        exit 1
+        ;;
+    esac
+  done
+}
+
+parse_arguments "$@"
+
+[ -n "$NEXT" ] && playerctl next
+[ -n "$PREV" ] && playerctl previous
+[ -n "$PLAY_PAUSE" ] && playerctl play-pause
