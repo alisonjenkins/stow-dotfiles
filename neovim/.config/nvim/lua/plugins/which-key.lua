@@ -193,8 +193,8 @@ function M.config()
         "Workspace Diagnostics",
       },
       M = {
-        "<cmd>Telescope man_pages<cr>",
-        "Man Pages",
+        "<cmd>Telescope macrothis<cr>",
+        "Macros",
       },
       T = {
         "<cmd>TodoTelescope<cr>",
@@ -299,6 +299,14 @@ function M.config()
         "<cmd>NeuralText Fix spelling and grammar and rephrase in a professional tone<cr>",
         "Fix spelling and grammar and rephrase in a proffesional tone",
       },
+    },
+    -- }}}
+    -- Random mappings (r) {{{
+    r = {
+      name = "Random mappings that I don't know where else to put...",
+      b = { "<cmd>BaconList<cr>", "List the Bacon issues" },
+      ["."] = { "<cmd>BaconNext<cr>", "Next Bacon issue" },
+      [","] = { "<cmd>BaconPrevious<cr>", "Previous Bacon issue" },
     },
     -- }}}
 
