@@ -1,6 +1,5 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	config = true,
 	build = ":TSUpdate",
 	lazy = true,
 	event = "VeryLazy",
@@ -12,5 +11,20 @@ return {
 			dependencies = { "nvim-treesitter/nvim-treesitter" },
 		},
 		{ "p00f/nvim-ts-rainbow" },
+
+		config = function()
+			local ts = require("nvim-treesitter.configs")
+			ts.setup({
+				auto_install = true,
+				sync_install = false,
+				ensure_installed = {
+					"maintained",
+				},
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				},
+			})
+		end,
 	},
 }
