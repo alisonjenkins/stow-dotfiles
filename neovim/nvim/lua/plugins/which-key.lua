@@ -253,6 +253,13 @@ function M.config()
 				"Switch directory with Z",
 			},
 		}, --}}}
+		-- k is for documentation {{{
+		k = {
+			name = "+documentation",
+			k = { "<cmd>DevDocsOpenCurrent<cr>", "Open documentation for current filetype" },
+			K = { "<cmd>DevDocsOpen<cr>", "Open documentation for current filetype" },
+		},
+		-- }}}
 		-- l is for Language Server Protocol (LSP){{{
 		l = {
 			name = "+lsp",
