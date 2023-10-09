@@ -128,7 +128,7 @@ stow -t "$HOME" curl/
 stow -t "$HOME" git
 stow -t "$HOME" hyprland/
 stow -t "$HOME" k9s/
-stow -t "$HOME" neovim
+stow -t "$HOME/.config" neovim
 stow -t "$HOME" scripts
 stow -t "$HOME" starship
 stow -t "$HOME" systemd/
