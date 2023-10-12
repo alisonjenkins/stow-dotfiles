@@ -64,10 +64,10 @@ if uname -a | grep 'Darwin' &> /dev/null; then
     alias lt='tree -C';
   fi
 else
-  if command -v exa &>/dev/null; then
-    alias ll='exa -l --grid --git';
-    alias ls='exa';
-    alias lt='exa --tree --git --long';
+  if command -v eza &>/dev/null; then
+    alias ll='eza -l --grid --git';
+    alias ls='eza';
+    alias lt='eza --tree --git --long';
   else
     alias ll='ls --color=auto -l';
     alias ls='ls --color=auto';
