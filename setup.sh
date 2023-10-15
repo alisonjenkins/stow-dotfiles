@@ -125,7 +125,7 @@ test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.
 stow -t "$HOME" alacritty
 stow -t "$HOME" bash
 stow -t "$HOME" curl/
-stow -t "$HOME" git
+stow -t "$HOME/.config" git
 stow -t "$HOME" hyprland/
 stow -t "$HOME" k9s/
 stow -t "$HOME/.config" neovim

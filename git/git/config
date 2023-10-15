@@ -185,6 +185,6 @@
   required = true
 
 [commit]
-  template = ~/.gittemplate
+  template = ~/.config/git/template
 [http]
 	postBuffer = 524288000
