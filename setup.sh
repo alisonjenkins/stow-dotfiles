@@ -125,10 +125,7 @@ test -d ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.
 stow -t "$HOME" alacritty
 stow -t "$HOME" bash
 stow -t "$HOME" curl/
-stow -t "$HOME/.config" git
-stow -t "$HOME/.config" hyprland/
 stow -t "$HOME" k9s/
-stow -t "$HOME/.config" neovim
 stow -t "$HOME" scripts
 stow -t "$HOME" starship
 stow -t "$HOME" systemd/
@@ -137,3 +134,7 @@ stow -t "$HOME" tmux
 stow -t "$HOME" wezterm/
 stow -t "$HOME" wireplumber/
 stow -t "$HOME" zsh/
+stow -t "$HOME/.config" git
+stow -t "$HOME/.config" hyprland/
+stow -t "$HOME/.config" neovim
+stow -t "$HOME/.config" nix/
