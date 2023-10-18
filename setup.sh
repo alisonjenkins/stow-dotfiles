@@ -126,7 +126,7 @@ stow -t "$HOME" alacritty
 stow -t "$HOME" bash
 stow -t "$HOME" curl/
 stow -t "$HOME/.config" git
-stow -t "$HOME" hyprland/
+stow -t "$HOME/.config" hyprland/
 stow -t "$HOME" k9s/
 stow -t "$HOME/.config" neovim
 stow -t "$HOME" scripts
