@@ -49,6 +49,8 @@ if [ -d ~/.local/share/rtx/plugins/direnv/ ]; then
   eval "$(rtx exec direnv -- direnv hook zsh)"
   # A shortcut for asdf managed direnv.
   direnv() { rtx exec direnv -- direnv "$@"; }
+elif command -v direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
 fi
 
 zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/aws/aws.plugin.zsh'
