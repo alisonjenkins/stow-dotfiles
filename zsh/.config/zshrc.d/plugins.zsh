@@ -45,10 +45,11 @@ rtx global zoxide@0.9.0 &>/dev/null
 zinit light ajeetdsouza/zoxide
 
 # Setup direnv
-eval "$(rtx exec direnv -- direnv hook zsh)"
-
-# A shortcut for asdf managed direnv.
-direnv() { rtx exec direnv -- direnv "$@"; }
+if [ -d ~/.local/share/rtx/plugins/direnv/ ]; then
+  eval "$(rtx exec direnv -- direnv hook zsh)"
+  # A shortcut for asdf managed direnv.
+  direnv() { rtx exec direnv -- direnv "$@"; }
+fi
 
 zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/aws/aws.plugin.zsh'
 zinit snippet 'https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/command-not-found/command-not-found.plugin.zsh'
