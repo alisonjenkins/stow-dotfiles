@@ -1,3 +1,5 @@
+export GPG_TTY=$(tty)
+
 if [[ ! -v XDG_CONFIG_HOME ]] || [ -z ${XDG_CONFIG_HOME+x} ];   ; then
   export XDG_CONFIG_HOME="$HOME/.config"
 fi
