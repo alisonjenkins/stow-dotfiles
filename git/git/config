@@ -2,7 +2,7 @@
 [user]
   email = alison.juliet.jenkins@gmail.com
   name = Alison Jenkins
-  #signingkey = **Your GPG ID**
+  signingkey = 7A161192
 
 [branch]
   autosetuprebase = always
@@ -186,5 +186,10 @@
 
 [commit]
   template = ~/.config/git/template
+  gpgSign = true
+
+[tag]
+  gpgSign = true
+
 [http]
 	postBuffer = 524288000
