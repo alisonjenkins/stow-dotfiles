@@ -1,16 +1,7 @@
 local M = {
-	"numToStr/Comment.nvim",
-	lazy = false,
+  "numToStr/Comment.nvim",
+  lazy = false,
+  config = true,
 }
-
-function M.config()
-	local ok, comment = pcall(require, "Comment")
-
-	if not ok then
-		return
-	end
-
-	comment.setup()
-end
 
 return M
