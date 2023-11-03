@@ -138,3 +138,4 @@ stow -t "$HOME/.config" git
 stow -t "$HOME/.config" hyprland/
 stow -t "$HOME/.config" neovim
 stow -t "$HOME/.config" nix/
+stow -t "$HOME/.config" surfingkeys
