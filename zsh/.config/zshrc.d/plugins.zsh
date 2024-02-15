@@ -30,26 +30,15 @@ zinit load macunha1/zsh-terraform
 zinit load zsh-users/zsh-autosuggestions
 zinit load molovo/tipz
 
-# Install rtx version manager (replacement for asdf)
-zinit ice from"gh-r" as"command" mv"rtx* -> rtx" \
-  atclone'./rtx complete -s zsh > _rtx' atpull'%atclone'
-zinit light jdxcode/rtx
-eval "$(rtx activate zsh)"
-
 # Setup Vi mode
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
 
 # install zoxide
-rtx global zoxide@0.9.0 &>/dev/null
 zinit light ajeetdsouza/zoxide
 
 # Setup direnv
-if [ -d ~/.local/share/rtx/plugins/direnv/ ]; then
-  eval "$(rtx exec direnv -- direnv hook zsh)"
-  # A shortcut for asdf managed direnv.
-  direnv() { rtx exec direnv -- direnv "$@"; }
-elif command -v direnv &>/dev/null; then
+if command -v direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
